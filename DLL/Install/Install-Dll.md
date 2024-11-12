@@ -2,7 +2,7 @@
 
 ## Step 1: Create a directory ##
 
-The first step is to open the File Explorer, and create a directory called XpressNetDll. The location and name of the directory should not be changed later. A good place is dirctly under C:.
+The first step is to open the File Explorer, and create a directory called XpressNetDll. The location and name of the directory should not be changed later. A good place is directly under C:.
 <br/><img src="Download/01-Create_Directory.png" alt="Create directory" width="500"/>
 <br/><br/>
 
@@ -33,7 +33,7 @@ A window opens, showing all the files in the Archive. Select all files, and copy
 
 ## Step 7: Open VB6 as Admin ##
 Now that all files are downloaded and saved, it is time to make and install the DLL at your local machine. For that purpose you have to run VB6 as Administrator.
-Click Windows Start -> Microsoft Visual Studio followed by a right click of Microsft Visual Basic 6. A windows appears and under More you select run as Administrator.
+Click Windows Start -> Microsoft Visual Studio followed by a right click of Microsft Visual Basic 6. A windows appears and under More you select Run as Administrator.
 <br/><img src="Make/01-Run_VB6_AsAdmin.png" alt="Open VB6 as Admin" width="600"/>
 <br/><br/>
 
