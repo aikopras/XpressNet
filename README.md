@@ -9,9 +9,10 @@ The motivation for developing this XpressNet DLL, was to allow existing VB6 prog
 The [Twentse Modelspoorwegclub](https://twentsemodelspoorweg.club) (TMC) uses such VB6 programs to control their large modeltrain layout.
 Since control is (currently) limited to switches, signals and feedbacks, the DLL focuses on Accessory Commands and (RS-Bus) Feedback signals.
 
-Despite TMC's focus on accessory commands and feedbacks, this library has implemented most XpressNet commands, although not all commands have been thoroughly tested.
+Despite TMC's focus on accessory commands and feedbacks, this library has implemented most XpressNet commands, although not all commands have been thoroughly tested. Since there are quite some similarities between the XpressNet and Z21 protocols, this DLL implements a subset of the Z21 commands as well.
 
-Since there are quite some similarities between the XpressNet and Z21 protocols, this DLL implements a subset of the Z21 commands as well.
+Download the various [PDF files in Documentation/Commands](Documentation/Commands) for details. The first column shows the VB6 stub / event / logfile message that is associated with each specific command; if empty the command is not implemented. The various colors indicate how well a command was tested.
+
 
 ---
 
@@ -25,6 +26,6 @@ De motivatie om deze DLL te ontwikkelen, is om bestaande VB6 programma's de moge
 
 De [Twentse Modelspoorwegclub](https://twentsemodelspoorweg.club) (TMC) gebruikt momenteel een aantal VB6 programma's waarmee de stations Enschede, Hengelo en Oldenzaal bestuurd worden. De besturing beperkt zich (voorlopig?) vooral to wissels, seinen, en bezetmelders (RS-Bus).
 
-Ondanks deze focus op wissels, seinen en terugmelders, zijn de meeste XpressNet commando's gewoon geïmplementeerd. Niet alles kon echter even rigoureus getest worden, dus fouten zijn niet uitgesloten.
+Ondanks deze focus op wissels, seinen en terugmelders, zijn de meeste XpressNet commando's gewoon geïmplementeerd. Niet alles kon echter even rigoureus getest worden, dus fouten zijn niet uitgesloten. Vanwege de grote overeenkomst tussen het XpressNet en Z21 protocol, is ook een subset van het Z21 protocol geïmplementeerd.
 
-Vanwege de grote overeenkomst tussen het XpressNet en Z21 protocol, is ook een subset van het Z21 protocol geïmplementeerd.
+Om precies te weten welke commando's geïmplementeerd zijn, download de [PDF files in Documentation/Commands](Documentation/Commands) voor details. De eerste kolom bevat de VB6 stub / event / logfile bericht dat bij het specifieke commando behoort; indien deze leeg is, is het betreffende commando niet geïmplementeerd. De kleuren geven de graad van testen aan.
