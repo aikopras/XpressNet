@@ -33,6 +33,7 @@ A window opens, showing all the files in the Archive. Select all files, and copy
 
 ## Step 7: Open VB6 as Admin ##
 Now that all files are downloaded and saved, it is time to make and install the DLL at your local machine. For that purpose you have to run VB6 as Administrator.
+Click Windows Start -> Microsoft Visual Studio followed by a right click of Microsft Visual Basic 6. A windows appears and under More you select run as Administrator.
 <br/><img src="Make/01-Run_VB6_AsAdmin.png" alt="Open VB6 as Admin" width="600"/>
 <br/><br/>
 
@@ -59,4 +60,12 @@ Click File -> Make XpressNet.dll, to compile the DLL.
 ## Step 12: Save and register the DLL ##
 In the last step you are asked where the DLL file should be stored. Select the directory in which you have the source files. Under the hood VB6 also registers the DLL in the Windows Registry, allowing any VB6 program to use the DLL. You are now ready with the installation of the DLL.
 <br/><img src="Make/06-SaveDll.png" alt="Save XpressNet.dll" width="500"/>
+<br/><br/>
+
+## Step 13: Reference the XpressNet DLL ##
+Before you can use the XpressNet DLL library in your project, you must reference the DLL. After opening your project click
+Project -> References, and select the XpressNet Interface. See both figures below.
+<br/><img src="Reference/01-OpenPreferences.png" alt="Open Project -> Preferences" width="350"/>
+<br/><br/>
+<br/><img src="Reference/02-SelectXpressNet.png" alt="Select XpressNet" width="500"/>
 <br/><br/>
