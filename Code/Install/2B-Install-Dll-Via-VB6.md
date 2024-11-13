@@ -11,23 +11,23 @@ Open your browser and go to the [XpressNet repository on Gihub](https://github.c
 <br/><img src="Download/02-Goto_GitHub.png" alt="go to GitHub" width="500"/>
 <br/><br/>
 
-## Step 3: Double Click Archive.zip ##
-Go to the directory called DLL and double click Archive.zip
-<br/><img src="Download/03-Double_Click.png" alt="click Archive.zip" width="500"/>
+## Step 3: Double Click VB6_Source.zip ##
+Go to the directory called Code and double click VB6_Source.zip
+<br/><img src="Download/03-Double_Click.png" alt="click VB6_Source.zip" width="500"/>
 <br/><br/>
 
 ## Step 4: Download as RAW file ##
-Click the download RAW file icon at the right to download Archive.zip to your local machine.
+Click the download RAW file icon at the right to download VB6_Source.zip to your local machine.
 <br/><img src="Download/04-Download_raw_file.png" alt="Download RAW" width="500"/>
 <br/><br/>
 
-## Step 5: Open the Archive ##
-After the file is downloaded (to your local Downloads directory), click Open file to Open the Archive.
-<br/><img src="Download/05-Open_Archive.png" alt="Open Archive" width="500"/>
+## Step 5: Open the VB6 Source file ##
+After the file is downloaded (to your local Downloads directory), click Open file to Open the VB6_Source file.
+<br/><img src="Download/05-Open_VB6_Source.png" alt="Open VB6_Source" width="500"/>
 <br/><br/>
 
 ## Step 6: Copy files ##
-A window opens, showing all the files in the Archive. Select all files, and copy them to the directory you've created in Step 1 above (like C:/XpressNetDll).
+A window opens, showing all the files in the VB6_Source file. Select all files, and copy them to the directory you've created in Step 1 above (like C:/XpressNetDll).
 <br/><img src="Download/06-Copy_Files.png" alt="Copy Files" width="600"/>
 <br/><br/>
 

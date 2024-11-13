@@ -11,23 +11,23 @@ Open de browser en ga naar de [XpressNet repository op Gihub](https://github.com
 <br/><img src="Download/02-Goto_GitHub.png" alt="Ga naar GitHub" width="500"/>
 <br/><br/>
 
-## Step 3: Dubbel klik op Archive.zip ##
-Navigeer naar de folder met de naam DLL en dubbel klik op de file Archive.zip
-<br/><img src="Download/03-Double_Click.png" alt="klik Archive.zip" width="500"/>
+## Step 3: Dubbel klik op VB6_Source.zip ##
+Navigeer naar de folder met de naam Code en dubbel klik op de file VB6_Source.zip
+<br/><img src="Download/03-Double_Click.png" alt="klik VB6_Source.zip" width="500"/>
 <br/><br/>
 
 ## Step 4: Download als RAW file ##
-Klik op de download RAW file icon aan de rechterkant om Archive.zip naar je lokale machine te downloaden.
+Klik op de download RAW file icon aan de rechterkant om VB6_Source.zip naar je lokale machine te downloaden.
 <br/><img src="Download/04-Download_raw_file.png" alt="Download RAW" width="500"/>
 <br/><br/>
 
-## Step 5: Open Archive.zip ##
-Nadat Archive.zip is gedownload (naar je lokale Downloads folder), klik Open file om Archive.zip te openen.
-<br/><img src="Download/05-Open_Archive.png" alt="Open Archive" width="500"/>
+## Step 5: Open VB6_Source.zip ##
+Nadat VB6_Source.zip is gedownload (naar je lokale Downloads folder), klik Open file om VB6_Source.zip te openen.
+<br/><img src="Download/05-Open_VB6_Source.png" alt="Open VB6 Source" width="500"/>
 <br/><br/>
 
 ## Step 6: Kopieer alle files ##
-Een nieuw venster opent, en toont alle files van Archive.zip. Selecteer alle files, en kopieer ze in de folder die je onder Stap 1 hebt gemaakt (bijvoorbeeld C:/XpressNetDll).
+Een nieuw venster opent, en toont alle files van VB6_Source.zip. Selecteer alle files, en kopieer ze in de folder die je onder Stap 1 hebt gemaakt (bijvoorbeeld C:/XpressNetDll).
 <br/><img src="Download/06-Copy_Files.png" alt="Kopieer files" width="600"/>
 <br/><br/>
 
