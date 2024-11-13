@@ -1,4 +1,4 @@
-# Download en Installatie van de XpressNet DLL
+# Download en Installatie van de XpressNet DLL (VB6)
 
 ## Step 1: Make een folder ##
 

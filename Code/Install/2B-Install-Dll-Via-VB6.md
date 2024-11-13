@@ -1,4 +1,4 @@
-# Download and Install the XpressNet DLL
+# Download and Install the XpressNet DLL (VB6)
 
 ## Step 1: Create a directory ##
 
