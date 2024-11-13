@@ -13,8 +13,10 @@ Despite TMC's focus on accessory commands and feedbacks, this library has implem
 
 Download the various [PDF files in Documentation/Commands](Documentation/Commands) for details. The first column shows the VB6 stub / event / logfile message that is associated with each specific command; if empty the command is not implemented. The various colors indicate how well a command was tested.
 
+
 [Examples](Examples/Examples.md) can be found under the "Examples" branch of this repository.
-A PDF version of the [User manual](Documentation/HowToUse/XpressNet-DLL_NL.md) (currently only available in Dutch) can be found under the "Documentation/Howto" branch of this repository. 
+A PDF version of the [User manual](Documentation/HowToUse/XpressNet-DLL_NL.md) (currently only available in Dutch) can be found under the Documentation/Howto branch of this repository. 
+
 ---
 
 # XpressNet (NL)
