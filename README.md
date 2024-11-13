@@ -13,7 +13,8 @@ Despite TMC's focus on accessory commands and feedbacks, this library has implem
 
 Download the various [PDF files in Documentation/Commands](Documentation/Commands) for details. The first column shows the VB6 stub / event / logfile message that is associated with each specific command; if empty the command is not implemented. The various colors indicate how well a command was tested.
 
-
+[Examples](Examples/Examples.md) can be found under the "Examples" branch of this repository.
+A PDF version of the [User manual](Documentation/HowToUse/XpressNet-DLL_NL.md) (currently only available in Dutch) can be found under the "Documentation/Howto" branch of this repository. 
 ---
 
 # XpressNet (NL)
@@ -29,3 +30,6 @@ De [Twentse Modelspoorwegclub](https://twentsemodelspoorweg.club) (TMC) gebruikt
 Ondanks deze focus op wissels, seinen en terugmelders, zijn de meeste XpressNet commando's gewoon geïmplementeerd. Niet alles kon echter even rigoureus getest worden, dus fouten zijn niet uitgesloten. Vanwege de grote overeenkomst tussen het XpressNet en Z21 protocol, is ook een subset van het Z21 protocol geïmplementeerd.
 
 Om precies te weten welke commando's geïmplementeerd zijn, download de [PDF files in Documentation/Commands](Documentation/Commands) voor details. De eerste kolom bevat de VB6 stub / event / logfile bericht dat bij het specifieke commando behoort; indien deze leeg is, is het betreffende commando niet geïmplementeerd. De kleuren geven de graad van testen aan.
+
+[Voorbeelden](Examples/Voorbeelden.md) staan onder de "Examples" tak van deze repository.
+Een PDF versie van de [Gebruikers handleiding](Documentation/HowToUse/XpressNet-DLL_NL.md) kan gedownload worden vanuit de "Documentation/Howto" tak van deze repository.
