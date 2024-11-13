@@ -19,7 +19,7 @@ Download the various [PDF files in Documentation/Commands](Documentation/Command
 # XpressNet (NL)
 Deze repository bevat een XpressNet Library (DLL), alsmede een aantal voorbeeld programma's die tonen hoe de DLL kan worden gebruikt. Bijna alle XpressNet commando's zijn geïmplementeerd, alsmede een aantal Z21 commando's. De code is geschreven in VB6, maar de verwachting is dat de DLL ook in combinatie met (modernere) programmeertalen gebruikt kan worden.
 
-Om de DLL te downloaden en installeren, zie de [handleiding](Code/Install/Installeren-library.md) voor verdere details.
+Om de DLL te downloaden en installeren, zie de [handleiding](Code/Install/Installeren-Library.md) voor verdere details.
 
 ## Achtergrond
 De motivatie om deze DLL te ontwikkelen, is om bestaande VB6 programma's de mogelijkheid te geven via XpressNet (of Z21) met DCC centrales te communiceren.
