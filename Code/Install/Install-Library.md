@@ -16,7 +16,7 @@ It is possible to add the source code of the library to the application source c
 - Application program must be written in VB6.</br>
 - Details of the library (the source code) are visible to the application developer. This could (accidentally) corrupt the library, causing the whole thing to fail.</br>
 
-**Installation:** see this [manual](abc.md) for details.
+**Installation:** see this [manual](1-VB6_Group.md) for details.
 
 ## 2: Register in windows registry
 The dll file (XpressNet.dll) is installed in the windows registry. This should be done on the development but also the production machines.

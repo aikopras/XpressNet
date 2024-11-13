@@ -16,7 +16,7 @@ Het is mogelijk de broncode van de library toe te voegen aan de broncode van de 
     - Applicatie programma moet in VB6 zijn geschreven.</br>
     - Details van de library (de broncode) zijn zichtbaar voor de applicatie ontwikkelaar. Hierdoor zou (per ongeluk) de library kunnen worden aangepast, waardoor het geheel niet meer werkt.</br>
 
-**Installatie:** zie deze [handleiding](abc.md) voor details.
+**Installatie:** zie deze [handleiding](1-VB6_Groep.md) voor details.
 
 ## 2: In windows registry registreren
 De dll file (XpressNet.dll) wordt in de windows registry geïnstalleerd. Dit moet gebeuren op de ontwikkel- maar ook de productie machines.
