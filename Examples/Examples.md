@@ -36,6 +36,6 @@ In addition, one line in the source file must be modified. See image below for d
 The subdirectory “Result_files-to_distribute” contains the compiled program (.exe file), as well as the DLL. These two files must be put on the production machine (in the same directory), after which the application can be started (without the DLL being registered).
 
 ## 6: Project Group ##
-This example shows how the application and the XpressNet code can be taken together in one project group. The advantage of this approach is that the XpressNet code is integrated within the application. Therefore, the DLL no longer needs to be installed.
+This example shows how the application and the XpressNet code can be taken together in one project group. The advantage of this approach is that the XpressNet code is integrated within the application. This may be useful during application testing, since the DLL need not yet be registered.
 <br/><img src="6-Project_Group/A_Screenshot.png" alt="Open VB6 Source" width="300"/>
 <br/><br/>
