@@ -33,7 +33,7 @@ De dll file (XpressNet.dll) wordt in de windows registry geïnstalleerd. Dit moe
 
 **Installatie:** </br>
 Installatie is, naast de ontwikkel machine, ook nodig voor alle productie machines. Er zijn twee methoden om de DLL in de windows registry te installeren.</br>
-    1. Door gebruik te maken van ***regsvr32***. Deze methode is relatief eenvoudig, maar wordt op Internet soms afgeraden. Zie deze [installatie handleiding](2B-Installeren-Dll-Via-regsvr32.md) hoe dit kan worden gedaan.</br>
+    1. Door gebruik te maken van ***regsvr32***. Deze methode is relatief eenvoudig, maar wordt op Internet soms afgeraden. Zie deze [installatie handleiding](2A-Installeren-Dll-Via-regsvr32.md) hoe dit kan worden gedaan.</br>
     2. De library code wordt in VB6 vertaald en vervolgens (voor de gebruiker onzichtbaar) door VB6 geregistreerd. Deze methode is wat omslachtiger, maar vermijd het gebruik van regsvr32. Hoe dit moet staat in deze [installatie handleiding](2B-Installeren-Dll-Via-VB6.md).
 
 
