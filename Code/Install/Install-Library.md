@@ -28,7 +28,8 @@ The dll file (XpressNet.dll) is installed in the windows registry. This should b
 
 **Disadvantages:**</br>
 - Installation of the DLL requires administrator rights, not only on the development machine, but also all production machines.</br>
-- Different versions of the dll can cause problems.
+- Different versions of the dll can cause problems.</br>
+- The dll file must be stored in a directory that may not be changed later.
 
 **Installation:** </br>
 Installation is required, in addition to the development machine, for all production machines. There are two methods to install the DLL in the windows registry.</br>
