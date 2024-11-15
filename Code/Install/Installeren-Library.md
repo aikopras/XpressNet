@@ -28,7 +28,8 @@ De dll file (XpressNet.dll) wordt in de windows registry geïnstalleerd. Dit moe
 
 **Nadelen:**</br>
     - Voor installatie van de DLL zijn administrator rechten nodig, niet alleen op de ontwikkel machine, maar ook alle productie machines.</br>
-    - Verschillende versies van de dll kunnen voor problemen zorgen
+    - Verschillende versies van de dll kunnen voor problemen zorgen</br>
+    - De dll moet op een "stabiele" plaats worden opgeslagen, en mag later niet verplaatst worden.
 
 **Installatie:** </br>
 Installatie is, naast de ontwikkel machine, ook nodig voor alle productie machines. Er zijn twee methoden om de DLL in de windows registry te installeren.</br>
