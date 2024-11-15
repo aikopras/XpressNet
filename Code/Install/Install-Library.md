@@ -4,15 +4,14 @@
 There are three ways to install and use the Library (source code / dll file). Each way has its own advantages and disadvantages. A distinction should be made between the development machine, and the production machines.
 
 ## 1: Add source code to the application.
-It is possible to add the source code of the library to the application source code. For this purpose a VB group can be created, which merges two projects: 1) the application code and 2) the XpressNet library code.
+During the development and test phase, it is possible to add the source code of the library to the application source code. For this purpose, within the IDE, a VB group can be created, which merges two projects: 1) the application code and 2) the XpressNet library code. As long as work is done within the IDE, it is possible to develop and test the program, without the need for administrator privileges. However, once an executable (.exe) is desired, administrator privileges are required to register the DLL. In such case, VB6 should be started with administrator privileges (see below under option 2) 
 
 **Advantages:**</br>
-- No administrator rights are required anywhere.</br>
-- No DLL file is needed (after all, we are using the XpressNet source code). So no problems with registering DLLs.</br>
-- If necessary, the XpressNet library code can be modified relatively easily.</br>
-- After the application program is developed and an .exe file is created, only this .exe file needs to be put on the production machines.
+- No administrator privileges are needed during testing within the IDE.</br>
+- If necessary, the XpressNet library code can be modified relatively easily.
 
 **Disadvantages:**</br>
+- Without administrator privileges it is not possible to create an executable (.exe)</br>
 - Application program must be written in VB6.</br>
 - Details of the library (the source code) are visible to the application developer. This could (accidentally) corrupt the library, causing the whole thing to fail.</br>
 
