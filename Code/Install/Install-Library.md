@@ -51,3 +51,4 @@ On the development machine, however, the DLL must be installed in the registry. 
 - An additional class (.cls) file must be added to the application source code, and one line in the application program must be modified.
 
 **Installation:** </br>
+The source code should be downloaded as described under Option 1. In addition an extra class file (XPNRegFree.cls) should be added. Details Details are described in the example application named [Regfree_test](../../Examples/Voorbeelden.md).
