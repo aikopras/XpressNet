@@ -1,18 +1,17 @@
 # Installatie van de XpressNet library
 
 
-Er zijn meerdere manieren om de Library software (dll file) te installeren en te gebruiken. Iedere manier heeft zijn eigen voor- en nadelen. Er dient hierbij onderscheid gemaakt te worden tussen de ontwikkel machine, en de productie machines.
+Er zijn meerdere manieren om de Library software te installeren en te gebruiken. Iedere manier heeft zijn eigen voor- en nadelen. Er dient hierbij onderscheid gemaakt te worden tussen de ontwikkel machine, en de productie machines.
 
 ## 1: Broncode toevoegen aan de applicatie
-Het is mogelijk de broncode van de library toe te voegen aan de broncode van de applicatie. Hiertoe wordt een VB groep gemaakt, welke twee projecten samenvoegt: 1) de applicatie code en 2) de XpressNet library code.
+Het is mogelijk gedurende de applicatie ontwikkel fase de broncode van de library toe te voegen aan de broncode van de applicatie. Hiertoe moet, in de IDE, een VB groep worden gemaakt, welke de twee projecten samenvoegt: 1) de applicatie code en 2) de XpressNet library code. Zolang er binnen de IDE wordt gewerkt, kan het programma uitevoerd worden zonder administrator privileges. Als er echter een executable (.exe) gemaakt wordt, dan kan dat niet zonder administrator privileges. Mocht er toch een executable gewenst zijn, start dan VB6 met administrator rechten (zie onder *2: In windows registry registreren*), of registreer de DLL meteen in de windows registry. 
 
 **Voordelen:**</br>
-    - Nergens administrator rechten nodig.</br>
-    - Er is geen DLL file nodig (we gebruiken immers de broncode). Dus geen problemen met het registreren van DLLs.</br>
-    - Indien nodig, kan de XpressNet library code relatief eenvoudig worden aangepast.</br>
-    - Nadat het applicatie programma is ontwikkeld en een .exe file is gemaakt, hoeft alleen deze .exe file op de productie machines te worden gezet.
+    - Tijdens de ontwikkeling zijn geen administrator rechten nodig.</br>
+    - Indien nodig, kan de XpressNet library code relatief eenvoudig worden aangepast.
 
 **Nadelen:**</br>
+    - Zonder administrator rechten kan geen executable (.exe) worden gemaakt.</br>
     - Applicatie programma moet in VB6 zijn geschreven.</br>
     - Details van de library (de broncode) zijn zichtbaar voor de applicatie ontwikkelaar. Hierdoor zou (per ongeluk) de library kunnen worden aangepast, waardoor het geheel niet meer werkt.</br>
 
