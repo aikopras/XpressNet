@@ -21,7 +21,7 @@ Het is mogelijk om meerdere XpressNet objecten te instantiëren binnen één app
 <br/><img src="4_Multiple_Instance_test/A_Screenshot.png" alt="Open VB6 Source" width="700"/>
 <br/><br/>
 
-(##5_Regfree_test##)
+## 5_Regfree_test ##
 Bij de meeste voorbeeld programma's is verondersteld dat de XpressNet DLL niet alleen op de ontwikkel, maar ook op de productie machines (in de Windows Registry) is geregistreerd. Om deze registratie te kunnen doen, zijn administrator rechten nodig op iedere machine. Op productie machines is het soms onmogelijk om administrator rechten te verkrijgen. In dergelijke gevallen kan de applicatie ook "Reg-Free" geschreven worden.
 
 Hiertoe dient op de ontwikkel omgeving de XpressNet DLL geregistreerd te zijn (dus op deze machine zijn wel administrator rechten nodig). Daarnaast moet de DLL file ook worden toegevoegd aan de directory met de source files, alsmede een speciale class file (XPNRegFree.cls). Deze class file dient aan het eigen programma te worden toegevoegd. Zie onderstaand plaatje.
