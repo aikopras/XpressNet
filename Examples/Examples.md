@@ -3,7 +3,7 @@ This directory contains a number of example applications that demonstrate certai
 
 Except for the last tests, all other test programs assume that the XpressNet DLL is installed in the windows registry. See the installation manual on how to do this registration. Don't forget to provide a Reference to the DLL!
 
-## 1-Basic_test ##
+## 1: Basic test ##
 Still needs to be added.
 
 ## 2-Extended_test ##
