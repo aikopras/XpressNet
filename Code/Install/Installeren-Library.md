@@ -4,7 +4,7 @@
 Er zijn meerdere manieren om de Library software te installeren en te gebruiken. Iedere manier heeft zijn eigen voor- en nadelen. Er dient hierbij onderscheid gemaakt te worden tussen de ontwikkel machine, en de productie machines.
 
 ## 1: Broncode toevoegen aan de applicatie
-Het is mogelijk gedurende de applicatie ontwikkel fase de broncode van de library toe te voegen aan de broncode van de applicatie. Hiertoe moet, in de IDE, een VB groep worden gemaakt, welke de twee projecten samenvoegt: 1) de applicatie code en 2) de XpressNet library code. Zolang er binnen de IDE wordt gewerkt, kan het programma uitevoerd worden zonder administrator privileges. Als er echter een executable (.exe) gemaakt wordt, dan kan dat niet zonder administrator privileges. Mocht er toch een executable gewenst zijn, start dan VB6 met administrator rechten (zie onder *2: In windows registry registreren*), of registreer de DLL meteen in de windows registry. 
+Het is mogelijk gedurende de applicatie ontwikkel fase de broncode van de library toe te voegen aan de broncode van de applicatie. Hiertoe moet, in de IDE, een VB groep worden gemaakt, welke de twee projecten samenvoegt: 1) de applicatie code en 2) de XpressNet library code. Zolang er binnen de IDE wordt gewerkt, kan het programma uitevoerd worden zonder administrator privileges. Als er echter een executable (.exe) gemaakt wordt, dan kan dat niet zonder administrator privileges. Mocht er toch een executable gewenst zijn, start dan VB6 met administrator rechten (zie onder *2: In windows registry registreren*), of registreer de DLL meteen in de windows registry.
 
 **Voordelen:**</br>
     - Tijdens de ontwikkeling zijn geen administrator rechten nodig.</br>
@@ -51,3 +51,4 @@ Op de ontwikkel machine moet de DLL wel in de registry worden geïnstalleerd. Hi
     - Aan de broncode van de applicatie moet een extra class (.cls) file worden toegevoegd, en één regel in het applicatie programma moet worden aangepast.
 
 **Installatie:** </br>
+De source code moet worden gedownload zoals beschreven onder optie 1. Daarnaast moet er een extra class file (XPNRegFree.cls) worden toegevoegd. Details zijn beschreven in de voorbeeld applicatie [Regfree_test](../../Examples/Voorbeelden.md).
