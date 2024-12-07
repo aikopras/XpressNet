@@ -1,0 +1,13 @@
+XpressNetClass = 26, 26, 1323, 1006, 
+FrmTcp = 0, 0, 0, 0, C, 26, 26, 993, 544, C
+FrmUsb = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+LogFileClass = 0, 0, 0, 0, C
+SendClass = 0, 0, 0, 0, C
+ReceiveClass = 0, 0, 0, 0, C
+UsbClass = 0, 0, 0, 0, C
+XTimerClass = 0, 0, 0, 0, C
+TcpClass = 0, 0, 0, 0, C
+AccAutoClass = 0, 0, 0, 0, C
+FrmUdp = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+UdpClass = 0, 0, 0, 0, C
+ReceiveClassZ21 = 0, 0, 0, 0, C

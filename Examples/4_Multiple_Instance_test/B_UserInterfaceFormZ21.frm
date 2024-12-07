@@ -915,7 +915,7 @@ Begin VB.Form FormZ21
          Height          =   372
          Left            =   1275
          TabIndex        =   2
-         Text            =   "192.168.1.215"
+         Text            =   "192.168.0.111"
          Top             =   360
          Width           =   1455
       End
@@ -1043,20 +1043,6 @@ End Sub
 Private Sub cmdRecht_Click()
   If Not IsNumeric(txtWissel.Text) Then Exit Sub
   If CheckAutoDeactivate.Value Then
-    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
-  Else
-    Call XpressNet.CmdAccessory(txtWissel.Text, 0, CheckActivate.Value)
-    If CheckActivate.Value Then
-      CheckActivate.Value = 0
-    Else:
-      CheckActivate.Value = 1
-    End If
-  End If
-End Sub
-
-Private Sub cmdAf_Click()
-  If Not IsNumeric(txtWissel.Text) Then Exit Sub
-  If CheckAutoDeactivate.Value Then
     Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
   Else
     Call XpressNet.CmdAccessory(txtWissel.Text, 1, CheckActivate.Value)
@@ -1068,9 +1054,23 @@ Private Sub cmdAf_Click()
   End If
 End Sub
 
+Private Sub cmdAf_Click()
+  If Not IsNumeric(txtWissel.Text) Then Exit Sub
+  If CheckAutoDeactivate.Value Then
+    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
+  Else
+    Call XpressNet.CmdAccessory(txtWissel.Text, 0, CheckActivate.Value)
+    If CheckActivate.Value Then
+      CheckActivate.Value = 0
+    Else:
+      CheckActivate.Value = 1
+    End If
+  End If
+End Sub
+
 Private Sub cmdSwitchFeedback_Click()
   If IsNumeric(txtWissel.Text) Then
-    Call XpressNet.CmdFeedbackRequest(txtWissel.Text, 0)
+    Call XpressNet.CmdSwitchInfoRequest(txtWissel.Text)
   End If
 End Sub
 

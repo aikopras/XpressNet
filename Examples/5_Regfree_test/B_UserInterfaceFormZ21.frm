@@ -915,7 +915,7 @@ Begin VB.Form FormZ21
          Height          =   372
          Left            =   1275
          TabIndex        =   2
-         Text            =   "192.168.1.215"
+         Text            =   "192.168.0.111"
          Top             =   360
          Width           =   1455
       End

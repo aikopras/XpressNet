@@ -1,9 +1,9 @@
-XpressNetClass = -8, -6, 1504, 998, 
+XpressNetClass = -6, -1, 830, 745, C
 FrmTcp = -10, 4, 733, 999, C, 42, 5, 551, 373, C
 FrmUsb = 0, 0, 0, 0, C, 0, 0, 0, 0, C
 LogFileClass = 0, 0, 0, 0, C
 SendClass = 271, 6, 1543, 862, C
-ReceiveClass = 420, 21, 1503, 997, 
+ReceiveClass = -374, 24, 709, 1000, C
 UsbClass = 57, -12, 1137, 976, C
 XTimerClass = 130, 130, 1376, 820, C
 TcpClass = 782, -2, 1552, 1002, C

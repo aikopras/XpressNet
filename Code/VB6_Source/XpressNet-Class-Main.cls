@@ -341,29 +341,53 @@ Public Sub CmdZentralenStartmodeSetzen(ByVal AutoStart As Boolean)
 End Sub
 
 ' V3.6: 3.2.23 / V4: 3.37 & 3.38 / Z21: 5.1 (Schaltinformationen anfordern / LAN_X_GET_TURNOUT_INFO)
-Public Sub CmdFeedbackRequest(ByVal address As Integer, ByVal Nibble As Byte)
+' Note: this command is intended for switches.
+' The (switch) address gets divided by 4 to obtain the decoder address
+Public Sub CmdSwitchInfoRequest(ByVal address As Integer)
   ' STEP 1: Check the address size against the ZentraleVersion and Protocol.
   If (ZentraleVersion < "3.8") And (Not Z21Protocol) Then
     If VelueOutOfRange(address, 1, 1024, "Accessory: Address") Then Exit Sub
   End If
   If VelueOutOfRange(address, 1, 2048, "Accessory: Address") Then Exit Sub
-  address = address - 1                      ' The LH100 numbering starts at 1, the wire at 0
-  If Nibble <> 0 Then Nibble = 1             ' Ensure the nibble is 0 or 1
-  Nibble = Nibble + 128                      ' The highest bit must be set
+  ' Switch numbering on the wire starts at 0. The LH100 numbering starts at 1
+  Dim wireAddress As Integer
+  wireAddress = address - 1
+  ' We need to determine the nibble for this specific switch.
+  ' We use temp variable to calculate the offset of the switch in this decoder
+  Dim temp As Integer                           ' a value between 0 and 3
+  Dim Nibble As Byte
+  Nibble = 0
+  temp = wireAddress Mod 4                      ' the result should be 0..3
+  If temp > 1 Then Nibble = 1                   ' 0 and 1 become 0; 2 and 3 become 1
   ' Send the command that fits for this ZentraleVersion and Protocol.
   If Z21Protocol Then
     ' Note: the XpressNet length, as contained in the four low order bits of the header,
     ' seem to be incorrect! However, this is what the Z21 spec says...
-    Call send.message(&H43, AccAH(address), AccAL(address))
+    Call send.message(&H43, AccAH(wireAddress), AccAL(wireAddress))
   Else
+    ' We should set the highest bit of the byte that contains the nibble
     If (ZentraleVersion < "3.8") Then
-      Call send.message(&H42, AccAL(address), Nibble)
+      Call send.message(&H42, AccAL(wireAddress), Nibble + 128)
     Else                                       ' Lenz V4 spec says Command station >= 3.8 SHOULD use the new form
-      Call send.message(&H43, AccAH(address), AccAL(address), Nibble)
+      Call send.message(&H43, AccAH(wireAddress), AccAL(wireAddress), Nibble + 128)
     End If
   End If
   ' STEP 5: Write the command details to the logfile
-  Logfile.Details "Feedback Request - Switch: " & Switch + 1 & "  Nibble: " & Nibble
+  Logfile.Details "Feedback Request - Switch: " & address
+End Sub
+
+' V3.6: 3.2.23 / V4: 3.37 & 3.38 (Schaltinformationen anfordern)
+' This command is intended for feedback (RS-Bus) decoders
+Public Sub CmdFeedbackRequest(ByVal address As Integer, ByVal Nibble As Byte)
+  ' STEP 1: Check the address size.
+  If VelueOutOfRange(address, 1, 128, "RS-Bus Feedback: Address") Then Exit Sub
+  If Nibble <> 0 Then Nibble = 1             ' Ensure the nibble is 0 or 1
+  ' STEP 2: Call the associated ExpressNet command
+  ' Substract 1 from the address. The LH100 numbering starts at 1, the wire at 0
+  ' Also set the highest bit of the nibble
+  Call send.message(&H42, address - 1, Nibble + 128)
+  ' STEP 3: Write the command details to the logfile
+  Logfile.Details "Feedback Request for address: " & address & "  Nibble: " & Nibble
 End Sub
 
 ' V3.6: 3.2.24 / V4: 3.39 & 3.40 / Z21: 5.2 (Schaltbefehl / LAN_X_SET_TURNOUT)
@@ -888,10 +912,11 @@ End Sub
 Public Sub eventFeedback(ByVal address As Integer, ByVal Nibble As Byte, ByVal ttBits As Byte, ByVal iBit As Byte, ByVal data As Byte)
   If ttBits = 2 Then                      ' normal feedback decoder
     ' We add 1 to the RS-Bus address, since addresses on the wire range from 0..127. We display these as 1..128
-    RaiseEvent Feedback(address + 1, Nibble, data)
+    address = address + 1
+    RaiseEvent Feedback(address, Nibble, data)
     Logfile.Details "Feedback Message received for RS-Bus address: " & address & "  Data: " & data & "  Nibble: " & Nibble
   Else                                    ' switch decoder
-    ' Adress is the decoder address, but we will return a switch address
+    ' Adress is the decoder address, but we will return a switch address pair
     Dim switchAddress As Integer
     If Not Z21Protocol Then
       switchAddress = (address * 4) + (Nibble * 2) + 1
@@ -899,7 +924,7 @@ Public Sub eventFeedback(ByVal address As Integer, ByVal Nibble As Byte, ByVal t
       switchAddress = address + 1
     End If
     RaiseEvent SwitchFeedback(switchAddress, ttBits, iBit, data)
-    Logfile.Details "Feedback Message received for switch address: " & switchAddress & "  Data: " & data & "  TT-Bits: " & ttBits & " I-Bit: " & iBit
+    Logfile.Details "Feedback Message received for switch addresses: " & switchAddress & "/" & switchAddress + 1 & "  Data: " & data & "  TT-Bits: " & ttBits & " I-Bit: " & iBit
   End If
 End Sub
 

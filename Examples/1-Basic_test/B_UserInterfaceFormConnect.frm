@@ -448,7 +448,7 @@ Begin VB.Form FormXpressNet
       Height          =   372
       Left            =   1440
       TabIndex        =   2
-      Text            =   "oldenzaal"
+      Text            =   "192.168.0.200"
       Top             =   480
       Width           =   1455
    End
@@ -1896,8 +1896,6 @@ Private FB(10) As Byte                 ' FB: Function Befehl (on / off)
 Private FS(10) As Byte                 ' Function Status (tastend oder nicht tastend)
 
 
-
-
 Public Sub Form_Load()
   Set XpressNet = New XpressNetClass
   ' Possible Baudrates for the USB interface
@@ -1958,17 +1956,24 @@ End Sub
 '===============================================================================================================
 Private Sub cmdRecht_Click()
   If Not IsNumeric(txtWissel.Text) Then Exit Sub
-  Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
+  Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
 End Sub
 
 Private Sub cmdAf_Click()
   If Not IsNumeric(txtWissel.Text) Then Exit Sub
-  Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
+  Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
 End Sub
 
 Private Sub cmdSwitchFeedback_Click()
   If IsNumeric(txtWissel.Text) Then
-    Call XpressNet.CmdFeedbackRequest(txtWissel.Text, 0)
+    Call XpressNet.CmdSwitchInfoRequest(txtWissel.Text)
+  End If
+End Sub
+
+Private Sub CmdRsFeedback_Click()
+  If IsNumeric(TxtRsBusAddress.Text) Then
+    Call XpressNet.CmdFeedbackRequest(TxtRsBusAddress.Text, 0)  ' Nibble 0
+    Call XpressNet.CmdFeedbackRequest(TxtRsBusAddress.Text, 1)  ' Nibble 1
   End If
 End Sub
 
@@ -2032,6 +2037,7 @@ End Sub
 Private Sub CmdGetF29_68_Click()
   Call XpressNet.CmdFunktionsZustandF29F68Anfordern(txtLokAddress.Text)
 End Sub
+
 
 
 
