@@ -12,24 +12,24 @@ Het is mogelijk gedurende de applicatie ontwikkel fase de broncode van de librar
 
 **Nadelen:**</br>
     - Zonder administrator rechten kan geen executable (.exe) worden gemaakt.</br>
-    - Applicatie programma moet in VB6 zijn geschreven.</br>
+    - Applicatie programma ***moet*** in VB6 zijn geschreven (en niet in .NET).</br>
     - Details van de library (de broncode) zijn zichtbaar voor de applicatie ontwikkelaar. Hierdoor zou (per ongeluk) de library kunnen worden aangepast, waardoor het geheel niet meer werkt.</br>
 
 **Installatie:** zie deze [handleiding](1-VB6_Groep.md) voor details.
 
 ## 2: In windows registry registreren
-De dll file (XpressNet.dll) wordt in de windows registry geïnstalleerd. Dit moet gebeuren op de ontwikkel- maar ook de productie machines.
+De DLL file (XpressNet.dll) wordt in de windows registry geïnstalleerd. Dit moet gebeuren op de ontwikkel- maar ook de productie machines.
 
 **Voordelen:**</br>
     - Eenvoudig in gebruik.</br>
     - Details van de library (zoals de broncode) blijven verborgen voor de applicatie ontwikkelaar.</br>
     - De library (dll file) hoeft op iedere machine slechts eenmaal te worden geïnstalleerd (=geregistreerd). Daarna kan ieder applicatie programma (.exe file) het gebruiken.</br>
-    - Zou ook moeten werken met applicaties die niet geschreven zijn in VB6, maar in bijvoorbeeld C en .Net.
+    - Werkt ook met applicaties die niet geschreven zijn in VB6, maar in bijvoorbeeld VB.NET (VB2019/2022), C#, of andere .NET talen. Merk op dat in dat geval de applicatie gebouwd moet zijn als 32-bit (x86), of dat er gebruik gemaakt moet worden van een zogeheten COM+ bridge (zie de  [speciale instructies hiervoor](2A-Installeren-Dll-Via-Com-Plus.md)).
 
 **Nadelen:**</br>
     - Voor installatie van de DLL zijn administrator rechten nodig, niet alleen op de ontwikkel machine, maar ook alle productie machines.</br>
-    - Verschillende versies van de dll kunnen voor problemen zorgen</br>
-    - De dll moet op een "stabiele" plaats worden opgeslagen, en mag later niet verplaatst worden.
+    - Verschillende versies van de DLL kunnen voor problemen zorgen</br>
+    - De DLL moet op een "stabiele" plaats worden opgeslagen, en mag later niet verplaatst worden.
 
 **Installatie:** </br>
 Installatie is, naast de ontwikkel machine, ook nodig voor alle productie machines. Er zijn twee methoden om de DLL in de windows registry te installeren.</br>
