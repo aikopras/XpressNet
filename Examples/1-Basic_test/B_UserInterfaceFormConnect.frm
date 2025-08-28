@@ -1898,6 +1898,8 @@ Private FS(10) As Byte                 ' Function Status (tastend oder nicht tas
 
 Public Sub Form_Load()
   Set XpressNet = New XpressNetClass
+  ' Set the directory for logfiles
+  XpressNet.Logfile.LogDirectory = "C:\Users\Public\XPN-Logfiles"
   ' Possible Baudrates for the USB interface
   ComboBaudUsb.AddItem "57600"
   ComboBaudUsb.AddItem "115200"
