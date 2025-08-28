@@ -88,7 +88,7 @@ Voordat de XpressNet DLL library in je eigen programma gebruikt kan worden, moet
 **Visual Studio 2019 / 2022 — .NET Framework (WinForms):**
 
 1. Open het project en ga naar **Project → Properties → Compile**.  
-2. Klik op **Advanced Compile Options…**.  
+2. Afhankelijk van de Visual Studio versie, kan het nodig zijn om naar de **Advanced Compile Options…** te gaan.  
 3. Zet **Target CPU** op **x86**.  
    *(U kunt dit ook doen via **Build → Configuration Manager…** en daar per configuratie Debug/Release de **Platform** op **x86** zetten.)*  
 4. Bouw de applicatie opnieuw en start deze.
