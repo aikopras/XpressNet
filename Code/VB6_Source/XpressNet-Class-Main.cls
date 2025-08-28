@@ -74,7 +74,7 @@ Public LogErrors As Boolean            ' Indicates a hardware or software proble
 Public LogHexMessages As Boolean       ' Hex dump of transmitted / received messages
 Public LogDetails As Boolean           ' Description of what has been transmitted / received
 Public AccessoryInterval As Long       ' Interval between two accesory commands
-    
+
 ' ATTRIBUTES THAT THE DLL USER MAY READ
 Public ZentraleNotAus As Boolean
 Public ZentraleNotHalt As Boolean
@@ -113,8 +113,8 @@ Public connectionType As connectionTypeEnum
 ' Known values for the Zentralen-Kennung
 Private Const LZ100 = &H0               ' LZ 100
 Private Const LH200 = &H1               ' LH 200
-Private Const DPC = &H2                 ' DPC – Zentrale (Compact und Commander)
-Private Const CntrPlus = &H3            ' Control Plus – Zentrale
+Private Const DPC = &H2                 ' DPC ï¿½ Zentrale (Compact und Commander)
+Private Const CntrPlus = &H3            ' Control Plus ï¿½ Zentrale
 Private Const Z21 = &H12                ' Z21 / Yamorc
 Private Const OpenDcc = &H20            ' See: https://www.opendcc.de/elektronik/opendcc/xpressnet_commands_e.html
 Private Const OpenDccXp = &H22          ' See: https://www.opendcc.de/elektronik/opendcc/xpressnet_commands_e.html
@@ -227,7 +227,7 @@ Public Sub CmdAlleLoksAnhalten()
   Logfile.Details "Alle Loks anhalten - Nothalt"
 End Sub
 
-' V3.6: 3.2.4 / V4: 3.6 & 3.7 (Eine Lok anhalten - Nothalt für eine Lok)
+' V3.6: 3.2.4 / V4: 3.6 & 3.7 (Eine Lok anhalten - Nothalt fï¿½r eine Lok)
 Public Sub CmdEineLokAnhalten(ByVal address As Integer)
   Call send.message(&H92, AH(address), AL(address))
   Logfile.Details "Eine lok anhalten. Adresse: " & address
@@ -436,35 +436,35 @@ Public Sub CmdLokInfoAnfordern(ByVal address As Integer)
   Logfile.Details "Lok Informationen anfordern. Address: " & address
 End Sub
 
-' V3.6: 3.2.25.1 / V4: 3.41.4 (Funktionsstatus anfordern F0 – F12)
+' V3.6: 3.2.25.1 / V4: 3.41.4 (Funktionsstatus anfordern F0 ï¿½ F12)
 Public Sub CmdFunktionsStatusAnfordern(ByVal address As Integer)
   If VelueOutOfRange(address, 0, 9999, "Funktionsstatus Anfordern: Address") Then Exit Sub
   Call send.message(&HE3, &H7, AH(address), AL(address))
   Logfile.Details "Funktionsstatus F0-F12 anfordern. Address: " & address
 End Sub
 
-' V3.6: 3.2.25.2 / V4: 3.41.5 (Funktionsstatus anfordern F13 – F28)
+' V3.6: 3.2.25.2 / V4: 3.41.5 (Funktionsstatus anfordern F13 ï¿½ F28)
 Public Sub CmdFunktionsStatusF13F28Anfordern(ByVal address As Integer)
   If VelueOutOfRange(address, 0, 9999, "Funktionsstatus F13-F28 Anfordern: Address") Then Exit Sub
   Call send.message(&HE3, &H8, AH(address), AL(address))
   Logfile.Details "Funktionsstatus F13-F28 anfordern. Address: " & address
 End Sub
 
-' V3.6: 3.2.25.3 / V4: 3.41.7 (Funktionszustand anfordern F13 – F28)
+' V3.6: 3.2.25.3 / V4: 3.41.7 (Funktionszustand anfordern F13 ï¿½ F28)
 Public Sub CmdFunktionsZustandF13F28Anfordern(ByVal address As Integer)
   If VelueOutOfRange(address, 0, 9999, "Funktionszustand F13-F28 Anfordern: Address") Then Exit Sub
   Call send.message(&HE3, &H9, AH(address), AL(address))
   Logfile.Details "Funktionszustand F13-F28 anfordern. Address: " & address
 End Sub
 
-' V4: 3.41.6 (Funktionsstatus anfordern F29 – F68)
+' V4: 3.41.6 (Funktionsstatus anfordern F29 ï¿½ F68)
 Public Sub CmdFunktionsStatusF29F68Anfordern(ByVal address As Integer)
   If VelueOutOfRange(address, 0, 9999, "Funktionsstatus F29-F68 Anfordern: Address") Then Exit Sub
   Call send.message(&HE3, &HA, AH(address), AL(address))
   Logfile.Details "Funktionsstatus F29-F68 anfordern. Address: " & address
 End Sub
 
-' V4: 3.41.8 (Funktionszustand anfordern F29 – F68)
+' V4: 3.41.8 (Funktionszustand anfordern F29 ï¿½ F68)
 Public Sub CmdFunktionsZustandF29F68Anfordern(ByVal address As Integer)
   If VelueOutOfRange(address, 0, 9999, "Funktionszustand F29-F68 Anfordern: Address") Then Exit Sub
   Call send.message(&HE3, &HB, AH(address), AL(address))
@@ -839,7 +839,7 @@ Public Sub eventInterfaceVersion(ByVal daten1 As Byte, ByVal daten2 As Byte)
   RaiseEvent InterfaceVersion(Version, code)
   Logfile.Details "Interface - Version: " & Version & "  Code: " & code
 End Sub
-  
+
 ' V3.6: 1.7 (XpressNet Address) / V3.6: 2.1 (Interface Status Befehl)
 Public Sub eventXpressNetAddress(ByVal address As Byte)
   ' This event is triggered as response to two commands:
@@ -884,21 +884,21 @@ Public Sub eventAllesAn()
    RaiseEvent AllesAn
    Logfile.Details "Broadcast: Alles An"
 End Sub
- 
+
 ' V3.6: 3.1.1.2, V4: 2.4.2, Z21: 2.7 (LAN_X_BC_TRACK_POWER_OFF)
 Public Sub eventNotAus()
    ZentraleNotAus = True
    RaiseEvent NotAus
    Logfile.Details "Broadcast: Alles Aus (Notaus)"
 End Sub
- 
+
 ' V3.6: 3.1.1.3, V4: 2.4.3, Z21: 2.14 (LAN_X_BC_STOPPED)
 Public Sub eventNotHalt()
    ZentraleNotHalt = True
    RaiseEvent NotHalt
    Logfile.Details "Broadcast: Alle Loks Aus - Nothalt"
 End Sub
- 
+
 ' V3.6: 3.1.1.4, V4: 2.4.4, Z21: 2.9 (LAN_X_BC_PROGRAMMING_MODE)
 Public Sub eventProgrammierMode()
    ZentraleProgrammierMode = True
@@ -1340,7 +1340,7 @@ Public Sub Class_Initialize()
    LogDetails = True               ' TODO: MOET TZT OP FALSE WORDEN GEZET. TIJDELIJK HANDIG VOOR DEBUGGEN
    ' Attributes the DLL user may change
    Z21Protocol = False
-   AccessoryInterval = 250         ' Time in msec between two accessory commands
+   AccessoryInterval = 125         ' Time in msec between two accessory commands
    ' Attributes the DLL user may read
    ZentraleNotAus = False
    ZentraleNotHalt = False
@@ -1368,4 +1368,3 @@ Private Sub Class_Terminate()
    Set AccAuto = Nothing
    Set Logfile = Nothing
 End Sub
-

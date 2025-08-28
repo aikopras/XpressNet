@@ -45,7 +45,7 @@ Public waitForlanKeepAliveResponse As Boolean     ' Flag that helps to distingui
 ' maxFifoMsgSize defines the maximum size of individual FIFO entries. This size should at least be the
 ' maximum XpressNet message size (including Framing and XOR bytes), plus one byte to store the actual
 ' XpressNet message size. This actual messages size is stored as first element of an Array row
-Private Const maxFifoEntries = 32                 ' The number of XpressNet messages the queue is able to hold
+Private Const maxFifoEntries = 128                 ' The number of XpressNet messages the queue is able to hold
 Private Const maxFifoMsgSize = 12                 ' For message from PC to Command Station
                                                   ' Should be higher than the maximum XpressNet message size
 Private head As Byte                              ' we take elements from the head of the queue
