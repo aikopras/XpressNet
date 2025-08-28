@@ -94,7 +94,7 @@ Project -> References, and select the XpressNet Interface. See both figures belo
 **Visual Studio 2019 / 2022 — .NET Framework (WinForms):**
 
 1. Open your project, go to **Project → Properties → Compile**.  
-2. Click **Advanced Compile Options…**.  
+2. Depending on the Visual Studio version, it may be necessary to go to the **Advanced Compile Options…**.  
 3. Set **Target CPU** to **x86**.  
    *(Alternatively, use **Build → Configuration Manager…** and set the project’s **Platform** to **x86** for Debug and Release.)*  
 4. Rebuild and run your application.
