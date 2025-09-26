@@ -37,4 +37,7 @@ De subdirectory "Result_files-to_distribute" bevat het gecompileerde programma (
 ## 6: Project Group ##
 Dit voorbeeld laat zien hoe de applicatie en de XpressNet code samen kunnen genomen in één project groep. Het voordeel van deze aanpak is dat de XpressNet code geïntegreerd wordt binnen de applicatie. Dit kan handig zijn tijdens software ontwikkeling, omdat de DLL op dat moment nog niet geïnstalleerd hoeft te worden.
 <br/><img src="6-Project_Group/A_Screenshot.png" alt="Open VB6 Source" width="300"/>
-<br/><br/>
+
+## Visual Studion 2019 - Basic test ##
+Dit voorbeeld laat zien hoe het Basic test programma de DLL gebruikt vanuit Visual Studio 2019.
+Ten opzichte van VB6 zijn er een paar veranderingen nodig, zoals AddHandler, om de events af te handelen.
