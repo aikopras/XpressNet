@@ -1,2 +1,24 @@
+# Visual Studio / .NET
+.vs/
+[Bb]in/
+[Oo]bj/
+[Bb]uild/
+[Ll]og/
+[Tt]est[Rr]esult*/
 
+# User-specific
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS tooling caches
+*.ide/
+*.VC.db
+*.opendb
+
+# OS cruft
 .DS_Store
+Thumbs.db
+__MACOSX/
+._*
