@@ -22,25 +22,35 @@ After the file is downloaded to your local Downloads directory, you must open th
 <br/><img src="Download/05-Open_VB6_Source.png" alt="Open VB6_Source" width="500"/>
 <br/><br/>
 
+## Stap 5: Copy all files ##
+After the ZIP file is opened, a new window opens showing all files contained within VB6_Source.zip. Select all files, and copy them to the folder you want to use for your own VB6 application.
+<br/><img src="Download/06-Copy_Files.png" alt="Kopieer files" width="600"/>
+<br/><br/>
+
 If your application folder was called "MyApplication", the file explorer shows the following files.
 <br/><img src="VB6_Group/01-FileExlplorer.png" alt="Overzicht files" width="400"/>
 <br/><br/>
 
-## Step 6: Open XpressNet.vbp ##
-Open the file named XpressNet.vbp, which is the Visual Basic 6 project group that holds together the various XpressNet source files.
-<br/><img src="VB6_Group/02-Open_Vbp.png" alt="Open XpressNet.vbp" width="300"/>
-<br/><br/>
-
-## Step 7: Add project ##
-To use the XpressNet sources in your own application program, you have to open a second project (add project) that will later contain the code for your own program. In general your own application program will take the form of a standard EXE.
+## Step 6: Start a new Standard EXE project ##
+To use the XpressNet sources in your own application program, you have to open a new Visual Basic 6.0 project (add project) that will later contain the code for your own application. In general your own application program will take the form of a **Standard EXE** .
 <br/><img src="VB6_Group/03-Add_Project.png" alt="Add project" width="250"/>
 <br/>
 <br/><img src="VB6_Group/04-Standard_exe.png" alt="Standard Exe" width="500"/>
 <br/><br/>
 
-## Step 8: Second project group ##
-The second project has now been created. Put the code for your own application in this new project, and give it a meaningful name. Gave also the project group a meaningful name and save it
-<br/><img src="VB6_Group/05-New_Project.png" alt="Standard Exe" width="700"/>
-<br/>
-<br/><img src="VB6_Group/06-Save_project_group.png" alt="Standard Exe" width="300"/>
+## Step 7: Open the XpressNet project and copy the code ##
+Open the file named **XpressNet.vbp**, which is the Visual Basic 6 project group that holds together the various XpressNet source files.
+<br/><img src="VB6_Group/02-Open_Vbp.png" alt="Open XpressNet.vbp" width="300"/>
 <br/><br/>
+
+In your Standard EXE project go to **Project → Add File**
+
+Add all **.frm** and **.cls** files that are present in **XpressNet.vbp**.
+
+You now have all required code directly in your own project. Save your project and close **XpressNet.vbp**.
+
+## Step 8: Compile and run your application ##
+
+Choose **File → Make Project.exe** to compile your program.
+
+You will get a single .exe, containing all code to use XpressNet. Registering an XpressNet DLL is not (any longer) necessary.

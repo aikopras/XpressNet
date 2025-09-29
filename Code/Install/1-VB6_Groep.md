@@ -23,7 +23,7 @@ Nadat VB6_Source.zip is gedownload naar je lokale Downloads folder, wordt het ti
 <br/><br/>
 
 ## Stap 5: Kopieer alle files ##
-Nadat de ZIP file is geopened, wordt een nieuw venster geopend met daarin alle files van VB6_Source.zip. Selecteer alle files, en kopieer ze naar de folder die je VB6 applicatie wilt gebruiken.
+Nadat de ZIP file is geopend, wordt een nieuw venster geopend met daarin alle files van VB6_Source.zip. Selecteer alle files, en kopieer ze naar de folder die je VB6 applicatie wilt gebruiken.
 <br/><img src="Download/06-Copy_Files.png" alt="Kopieer files" width="600"/>
 <br/><br/>
 
@@ -31,21 +31,19 @@ Als je applicatie folder de naam "MyApplication" heeft, dan ziet het in de file 
 <br/><img src="VB6_Group/01-FileExlplorer.png" alt="Overzicht files" width="400"/>
 <br/><br/>
 
-## Stap 6: Open XpressNet.vbp ##
-Open nu de file met de naam XpressNet.vbp, dus de XpressNet Visual Basic 6 project groep.
-<br/><img src="VB6_Group/02-Open_Vbp.png" alt="Open XpressNet.vbp" width="300"/>
-<br/><br/>
+## Stap 6: Start een nieuw Standard EXE-project
+Open Visual Basic 6.0 en kies **Standard EXE**.
 
-## Stap 7: Add project ##
-Om de XpressNet sources in je eigen applicatie programma te kunnen gebruiken, moet eerst een tweede project worden aangemaakt waarin straks de code van je eigen programma komt. In het algemeen zal je programma de vorm van een standard EXE krijgen.
-<br/><img src="VB6_Group/03-Add_Project.png" alt="Add project" width="250"/>
-<br/>
-<br/><img src="VB6_Group/04-Standard_exe.png" alt="Standard Exe" width="500"/>
-<br/><br/>
+Dit project wordt je eigen applicatie.
 
-## Stap 8: Tweede project groep ##
-De tweede project groep is nu aangemaakt, waarin nu de code van je eigen programma gezet kan worden. Verander de naam van deze groep en sla de project groep op.
-<br/><img src="VB6_Group/05-New_Project.png" alt="Standard Exe" width="700"/>
-<br/>
-<br/><img src="VB6_Group/06-Save_project_group.png" alt="Standard Exe" width="300"/>
-<br/><br/>
+## Stap 7: Open het XpressNet-project en kopieer de code
+Open ter inzage **XpressNet.vbp** (niet nodig om te runnen).
+Ga in je Standard EXE-project naar **Project → Add File…** en voeg de benodigde bronbestanden toe die in **XpressNet.vbp** worden genoemd. Dat zijn alle bestanden waarvan de file extensie eindigt op **.cls** (class modules) en **.frm** (forms).
+
+Sla je eigen project op en sluit daarna **XpressNet.vbp**.
+
+## Stap 8: Compileer en draai je applicatie
+Zorg dat **Project → Properties → Startup Object** correct staat (je hoofdformulier of Sub Main).
+
+Kies **File → Make <ProjectName>.exe** om te compileren.
+Je krijgt één .exe met alle XpressNet-code ingebouwd. Het registreren van een XpressNet-DLL is niet nodig.
