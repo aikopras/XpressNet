@@ -4,7 +4,7 @@ This directory contains a number of example applications that demonstrate certai
 Except for the last tests, all other test programs assume that the XpressNet DLL is installed in the windows registry. See the installation manual on how to do this registration. Don't forget to provide a Reference to the DLL!
 
 ## 1: Basic test ##
-Still needs to be added.
+This test program shows the basic use of the XpressNet DLL: connecting via TCP/IP or USB, requesting version information, switching accessories (with automatic deactivation), requesting switch and RS-Bus feedback, and controlling locomotives and their functions (F0 to F68). It also shows how the application can set the directory for the logfiles.
 
 ## 2: Extended test ##
 This test program can be used to test a large number of XpressNet commands, and see which responses are sent by the command station.
@@ -33,7 +33,7 @@ In addition, one line in the source file must be modified. See image below for d
 <br/>
 
 
-The subdirectory “Result_files-to_distribute” contains the compiled program (.exe file), as well as the DLL. These two files must be put on the production machine (in the same directory), after which the application can be started (without the DLL being registered).
+The subdirectory “Exe” contains the compiled program (.exe file), as well as the DLL. These two files must be put on the production machine (in the same directory), after which the application can be started (without the DLL being registered).
 
 ## 6: Project Group ##
 This example shows how the application and the XpressNet code can be taken together in one project group. The advantage of this approach is that the XpressNet code is integrated within the application. This may be useful during application testing, since the DLL need not yet be registered.
@@ -42,3 +42,5 @@ This example shows how the application and the XpressNet code can be taken toget
 ## VS2019 - Basic test
 This example shows how the Basic test programme uses the DLL from Visual Studio 2019.
 Compared to VB6, a few changes are needed, such as AddHandler, to handle the events.
+
+Note: the project refers to the type library of a specific version of the DLL. After installing a new version of the DLL (such as version 1.3), remove the reference to XpressNet and add it again (Project → Add Reference…, COM).

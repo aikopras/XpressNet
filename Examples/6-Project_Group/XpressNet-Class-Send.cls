@@ -45,7 +45,7 @@ Public waitForlanKeepAliveResponse As Boolean     ' Flag that helps to distingui
 ' maxFifoMsgSize defines the maximum size of individual FIFO entries. This size should at least be the
 ' maximum XpressNet message size (including Framing and XOR bytes), plus one byte to store the actual
 ' XpressNet message size. This actual messages size is stored as first element of an Array row
-Private Const maxFifoEntries = 32                 ' The number of XpressNet messages the queue is able to hold
+Private Const maxFifoEntries = 128                 ' The number of XpressNet messages the queue is able to hold
 Private Const maxFifoMsgSize = 12                 ' For message from PC to Command Station
                                                   ' Should be higher than the maximum XpressNet message size
 Private head As Byte                              ' we take elements from the head of the queue
@@ -187,23 +187,40 @@ Public Sub nextMessage()
 End Sub
 
 Public Sub transmit(ByRef byteArray() As Byte)
-  waitForAck = True                                      ' We may not send a next message immediately
+  ' 2026-10 modified: no flow control for the Z21 (UDP). The Z21 does not answer every command (Z21 spec 1.1:
+  ' communication is asynchronous; many commands have no reply), so waiting for an answer could block the FIFO.
+  ' Messages for the Z21 are therefore sent immediately; the FIFO is not used for UDP
+  'waitForAck = True                                      ' We may not send a next message immediately
+  If Parent.connectionType <> lanUdpPort Then waitForAck = True   ' We may not send a next message immediately
   Select Case Parent.connectionType                      ' Select output
     Case lanTcpPort:
       Parent.tcp.SendData byteArray
       lanKeepAliveTimer.Interval = lanKeepAliveInterval  ' Restart the timer, by resetting the Interval
-      tcpResponseTimer.Enabled = True                    ' This timer triggers if there is no response = Error
-      If Parent.ZentraleProgrammierMode Then             ' Responses in programming mode may take 90 sec
-        tcpResponseTimer.Interval = tcpProgrammingTimeOut
-      Else
-        tcpResponseTimer.Interval = tcpResponseTimeOut   ' In normal mode the response must be within 5 sec
-      End If
+      ' 2026-10 modified: the response timer is started below End Select, for TCP, USB and serial
+      'tcpResponseTimer.Enabled = True                    ' This timer triggers if there is no response = Error
+      'If Parent.ZentraleProgrammierMode Then             ' Responses in programming mode may take 90 sec
+      '  tcpResponseTimer.Interval = tcpProgrammingTimeOut
+      'Else
+      '  tcpResponseTimer.Interval = tcpResponseTimeOut   ' In normal mode the response must be within 5 sec
+      'End If
     Case lanUdpPort:
       Parent.udp.SendData byteArray
       lanKeepAliveTimer.Interval = lanKeepAliveInterval  ' Restart the timer, by resetting the Interval
     Case usbPort: Parent.usb.SendUsbData byteArray
     Case serialPort: Parent.usb.SendSerialData byteArray ' Serial and USB use the same class and object
   End Select
+  ' 2026-10 modified: the response timer is used for TCP, USB and serial (was: TCP only). The USB interface has
+  ' the same rule as LAN: no next command before the response, or before the timeout (5 sec, 1.5 min in
+  ' programming mode) (LI-USB: 1.1, Interface 23151: 1.3). Serial interfaces may omit the confirmation 1/4/5
+  ' (LI101F: 1.4). Without this timer, a missing response blocked the FIFO for USB and serial.
+  If Parent.connectionType <> lanUdpPort Then
+    tcpResponseTimer.Enabled = True                      ' This timer triggers if there is no response = Error
+    If Parent.ZentraleProgrammierMode Then             ' Responses in programming mode may take 90 sec
+      tcpResponseTimer.Interval = tcpProgrammingTimeOut
+    Else
+      tcpResponseTimer.Interval = tcpResponseTimeOut   ' In normal mode the response must be within 5 sec
+    End If
+  End If
 '  If Parent.LogHexMessages Then Parent.Logfile.SendHex byteArray
   Parent.NumberOfExpressNetMessagesTransmitted = Parent.NumberOfExpressNetMessagesTransmitted + 1
 End Sub
@@ -226,13 +243,20 @@ End Sub
 
 Private Sub tcpResponseTimer_Timer(ByVal Seconds As Currency)
   ' For the TCP interface: if the timer expires, something went wrong. Let's go to a well-defined state
-  If Parent.connectionType = lanTcpPort Then
+  ' 2026-10 modified: for TCP, USB and serial (see transmit). The keep alive message is for TCP only
+  ' (Interface 23151: chapter 2 is for the LAN interface only)
+  'If Parent.connectionType = lanTcpPort Then
+  If Parent.connectionType <> lanUdpPort Then
     Call emptyFifo                                        ' Remove all XpressNet messages still waiting
     Call Parent.AccAuto.emptyFifo                         ' Remove all switch commands still waiting
     waitForAck = False                                    ' Clear the message acknowledgement flag
     tcpResponseTimer.Enabled = False                      ' Stop the response timer
-    waitForlanKeepAliveResponse = True                    ' We will send a keep alive message
-    Call Parent.CmdInterfaceStatus                        ' We will send a keep alive message
+    'waitForlanKeepAliveResponse = True                    ' We will send a keep alive message
+    'Call Parent.CmdInterfaceStatus                        ' We will send a keep alive message
+    If Parent.connectionType = lanTcpPort Then
+      waitForlanKeepAliveResponse = True                  ' We will send a keep alive message
+      Call Parent.CmdInterfaceStatus                      ' We will send a keep alive message
+    End If
     Parent.Logfile.Errors "Error: TCP Response Timer has timed out. Message queues emptied"
   End If
 End Sub

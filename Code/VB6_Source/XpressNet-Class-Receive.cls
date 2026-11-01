@@ -37,9 +37,16 @@ Public Sub addToIndata(ByVal bytesReceived As Long, ByRef inBytes() As Byte)
   Dim i As Long                              ' used in For loops
   For i = 0 To bytesReceived - 1             ' include all bytes that we received as input
     ' Some command stations (like the YD7001) may generate quite some data
+    ' 2026-10 modified: if the buffer is full, first process the complete XpressNet messages, and then continue.
+    ' An XpressNet message is at most 19 bytes (2 framing bytes, header, 15 data bytes, XOR), so afterwards the
+    ' buffer contains at most 18 bytes. Before, the remaining bytes were dropped and the buffer stayed full,
+    ' so nothing could be received anymore
+    'If indexNextInByte > inDataSize Then
+    '  Parent.Logfile.Errors "Error: overflow receive input buffer"
+    '  Exit Sub
+    'End If
     If indexNextInByte > inDataSize Then
-      Parent.Logfile.Errors "Error: overflow receive input buffer"
-      Exit Sub
+      Call checkInDataForXpressNetmessages
     End If
     inData(indexNextInByte) = inBytes(i)
     indexNextInByte = indexNextInByte + 1
@@ -100,6 +107,8 @@ Private Sub checkInDataForXpressNetmessages()
       If Parent.LogErrors Then Parent.Logfile.ReceiveHexRange inData, 0, (Xpnlength + 1)
     End If
     ' STEP 8 Remove the old message from the inData buffer, and shift the remainder to the begin
+    ' 2026-10 modified: the note below is not correct: the inData buffer is not emptied if the Acknowledgement
+    ' times out. Garbage is removed here as well (with a XOR error), since a "message" is at most 19 bytes
     ' Note that if, for some reason, the inData buffer contains garbage, the buffer will be emptied
     ' if the Acknowledgement times out.
     i = 0

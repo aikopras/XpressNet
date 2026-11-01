@@ -3,7 +3,7 @@ In deze handleiding wordt beschreven hoe je de XpressNet source files onderdeel 
 
 
 ## Stap 1: Ga naar de GitHub repository ##
-Open de browser en ga naar de [XpressNet repository op Gihub](https://github.com/aikopras/XpressNet).
+Open de browser en ga naar de [XpressNet repository op GitHub](https://github.com/aikopras/XpressNet).
 <br/><img src="Download/02-Goto_GitHub.png" alt="Ga naar GitHub" width="500"/>
 <br/><br/>
 

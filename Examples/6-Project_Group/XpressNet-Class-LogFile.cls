@@ -13,6 +13,8 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
 Option Explicit
 
+' Version 1.1.0: Logfile directory can be changed by the application program
+
 ' The lines below are needed to pass a pointer of the main object to this subclass.
 Private Declare Function vbaObjSetAddref Lib "msvbvm60" Alias "__vbaObjSetAddref" (oDest As Any, ByVal lSrcPtr As Long) As Long
 Private m_lParentWeakRef    As Long
@@ -20,10 +22,12 @@ Private m_lParentWeakRef    As Long
 
 ' The maximum Logfile size as well as the names of the Logfile and backups may be modifief
 Const maxLogFileSize As Long = 100000                      ' Size is in bytes
-Const logFileName As String = "C:\Users\Public\TMC-LogFile.txt"
-Const logFileNameOld1 As String = "C:\TMC-LogFile-1.txt"
-Const logFileNameOld2 As String = "C:\TMC-LogFile-2.txt"
-Const logFileNameOld3 As String = "C:\TMC-LogFile-3.txt"
+
+Private m_LogDir As String
+Public logFileName As String
+Public logFileNameOld1 As String
+Public logFileNameOld2 As String
+Public logFileNameOld3 As String
 
 
 
@@ -54,6 +58,17 @@ End Type
 
 Public myHost As String              ' Allows the Logfile Hex dumps to include the IP address / USB port
 
+Private Sub Class_Initialize()
+    ' In case the application doesn't provide a path, use the following defaults
+    m_LogDir = Environ$("PUBLIC")     ' Use the Windows Environ variable
+    If Len(m_LogDir) = 0 Then
+        m_LogDir = "C:\Users\Public"  ' Works on several systems, but may require admin rights
+    End If
+    logFileName = m_LogDir & "\TMC-LogFile.txt"
+    logFileNameOld1 = m_LogDir & "\TMC-LogFile-1.txt"
+    logFileNameOld2 = m_LogDir & "\TMC-LogFile-2.txt"
+    logFileNameOld3 = m_LogDir & "\TMC-LogFile-3.txt"
+End Sub
 
 
 Public Sub OpenLogfile()
@@ -87,9 +102,6 @@ Public Sub Append(ByVal data As String)
   TimeText = MyTime.wYear & "/" & Format(MyTime.wMonth, "00") & "/" & Format(MyTime.wDay, "00") & " " & Format(MyTime.wHour, "00") & ":" & Format(MyTime.wMinute, "00") & ":" & Format(MyTime.wSecond, "00") & "." & Format(MyTime.wMilliseconds, "000")
   iFileNo = FreeFile
   Open logFileName For Append As #iFileNo
-  ' OLD - TODO: KAN NA ENIGE TIJD WEG
-  'Print #iFileNo, Format(Now, "yyyy/mm/dd hh:mm:ss") & ": " & data
-  ' NEW (with ms)
   Print #iFileNo, TimeText & ": " & data
   'close the file (if you dont do this, you wont be able to open it again!)
   Close #iFileNo
@@ -183,6 +195,32 @@ Public Sub ReceiveHex(ByRef byteArray() As Byte)
 End Sub
 
 
+' Added in Version 1.1.0
+Public Property Let LogDirectory(ByVal value As String)
+    Dim d As String
+    d = Trim$(value)
+    If Len(d) = 0 Then Exit Property
+    ' trailing backslash weghalen
+    If Right$(d, 1) = "\" Then d = Left$(d, Len(d) - 1)
+    ' check folder exists
+    If Dir$(d, vbDirectory) = vbNullString Then
+        On Error Resume Next
+        MkDir d
+        If Err.number <> 0 Then
+            ' Folder creation failed -> keep old m_LogDir and defaults
+            Err.Clear
+            On Error GoTo 0
+            Exit Property
+        End If
+        On Error GoTo 0
+    End If
+    ' Once we are here, the folder already exists or has been created
+    m_LogDir = d
+    logFileName = m_LogDir & "\TMC-LogFile.txt"
+    logFileNameOld1 = m_LogDir & "\TMC-LogFile-1.txt"
+    logFileNameOld2 = m_LogDir & "\TMC-LogFile-2.txt"
+    logFileNameOld3 = m_LogDir & "\TMC-LogFile-3.txt"
+End Property
 
 
 
@@ -194,6 +232,3 @@ End Property
 Friend Property Set Parent(oValue As XpressNetClass)
     m_lParentWeakRef = ObjPtr(oValue)
 End Property
-
-
-

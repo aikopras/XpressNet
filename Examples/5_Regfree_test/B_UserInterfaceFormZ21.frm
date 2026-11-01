@@ -576,6 +576,11 @@ Begin VB.Form FormZ21
          Width           =   1600
       End
    End
+   Begin VB.Timer TimerMessageCounter
+      Interval        =   1000
+      Left            =   10200
+      Top             =   1800
+   End
    Begin VB.Frame FrameNumberOfmessages 
       Height          =   615
       Left            =   7920
@@ -977,10 +982,21 @@ Public Sub Form_Load()
   '
   ' Set command that is needed if the DLL is distributed next to the exe.
   Set XpressNet = cRegFree.CreateObj("XpressNetClass", "XpressNet.dll")
+  ' 2026-10 modified: possible lok decoder steps (as in the XpressNet Basic test). Before, the list was empty
+  ComboLokSteps.AddItem "14"
+  ComboLokSteps.AddItem "27"
+  ComboLokSteps.AddItem "28"
+  ComboLokSteps.AddItem "128"
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
   Set XpressNet = Nothing
+End Sub
+
+' 2026-10 modified: new (with the new Timer control TimerMessageCounter), as in the Extended test.
+' Before, txtNmbPckts ("Number of Z21Messages") was never updated
+Private Sub TimerMessageCounter_Timer()
+  txtNmbPckts = XpressNet.NumberOfExpressNetMessagesReceived + XpressNet.NumberOfExpressNetMessagesTransmitted
 End Sub
 
 
@@ -1047,9 +1063,13 @@ End Sub
 Private Sub cmdRecht_Click()
   If Not IsNumeric(txtWissel.Text) Then Exit Sub
   If CheckAutoDeactivate.Value Then
-    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
+    ' 2026-10 modified: position 1 (as in the other Z21 forms). Was position 0
+    'Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
+    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
   Else
-    Call XpressNet.CmdAccessory(txtWissel.Text, 0, CheckActivate.Value)
+    ' 2026-10 modified: position 1 (as in the other Z21 forms). Was position 0
+    'Call XpressNet.CmdAccessory(txtWissel.Text, 0, CheckActivate.Value)
+    Call XpressNet.CmdAccessory(txtWissel.Text, 1, CheckActivate.Value)
     If CheckActivate.Value Then
       CheckActivate.Value = 0
     Else:
@@ -1061,9 +1081,13 @@ End Sub
 Private Sub cmdAf_Click()
   If Not IsNumeric(txtWissel.Text) Then Exit Sub
   If CheckAutoDeactivate.Value Then
-    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
+    ' 2026-10 modified: position 0 (as in the other Z21 forms). Was position 1
+    'Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 1)
+    Call XpressNet.CmdAccessoryAuto(txtWissel.Text, 0)
   Else
-    Call XpressNet.CmdAccessory(txtWissel.Text, 1, CheckActivate.Value)
+    ' 2026-10 modified: position 0 (as in the other Z21 forms). Was position 1
+    'Call XpressNet.CmdAccessory(txtWissel.Text, 1, CheckActivate.Value)
+    Call XpressNet.CmdAccessory(txtWissel.Text, 0, CheckActivate.Value)
     If CheckActivate.Value Then
       CheckActivate.Value = 0
     Else:
@@ -1074,7 +1098,9 @@ End Sub
 
 Private Sub cmdSwitchFeedback_Click()
   If IsNumeric(txtWissel.Text) Then
-    Call XpressNet.CmdFeedbackRequest(txtWissel.Text, 0)
+    ' 2026-10 modified: switch information (as in the other Z21 forms). Was RS-Bus feedback (CmdFeedbackRequest)
+    'Call XpressNet.CmdFeedbackRequest(txtWissel.Text, 0)
+    Call XpressNet.CmdSwitchInfoRequest(txtWissel.Text)
   End If
 End Sub
 

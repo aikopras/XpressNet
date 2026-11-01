@@ -7,7 +7,7 @@ The first step is to open the File Explorer, and create a directory called Xpres
 <br/><br/>
 
 ## Step 2: Go to the GitHub repository ##
-Open your browser and go to the [XpressNet repository on Gihub](https://github.com/aikopras/XpressNet).
+Open your browser and go to the [XpressNet repository on GitHub](https://github.com/aikopras/XpressNet).
 <br/><img src="Download/02-Goto_GitHub.png" alt="go to GitHub" width="500"/>
 <br/><br/>
 

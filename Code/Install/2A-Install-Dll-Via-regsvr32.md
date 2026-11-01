@@ -44,7 +44,7 @@ Move to the directory where you have stored the XpressNet.dll. This directory sh
 <br/><img src="Regsvr32/04-Cmd_regsvr32.png" alt="move dir" width="400"/>
 <br/><br/>
 
-## Step 9A: Run regsvr32 on a 32 bit system##
+## Step 9A: Run regsvr32 on a 32 bit system ##
 Run regsvr32, using XpressNet.dll as argument, on 32 bit systems (see below).
 <br/><img src="Regsvr32/04-Detail_regsvr32.png" alt="Register" width="500"/>
 <br/>
@@ -55,7 +55,7 @@ If you want to unregister the DLL later, for example because a new version shoul
 <br/><img src="Regsvr32/06-unregister.png" alt="Unregister" width="500"/>
 <br/><br/>
 
-## Step 9B: Run regsvr32 on a 64 bit system##
+## Step 9B: Run regsvr32 on a 64 bit system ##
 Run regsvr32, using XpressNet.dll as argument, on 64 bit systems (see below). Since the XpressNet DLL is a 32-bit COM component, on 64-bit Windows you must run the 32-bit version of regsvr32, located in C:\Windows\SysWOW64\. Running the 64-bit regsvr32 (in C:\Windows\System32\) will not work.
 <br/><img src="Regsvr32/04-Detail_regsvr32-64bit.png" alt="Register" width="500"/>
 <br/>
@@ -82,7 +82,7 @@ Project -> References, and select the XpressNet Interface. See both figures belo
 **Important:** It does not matter whether your Windows is 64-bit; what matters is whether **your application** runs as 32-bit or 64-bit.
 
 - **VB6 applications** are **always 32-bit**.  
-  → Step **9A** applies: registering the DLL is straightforward and it will load in-process.
+  → The DLL will load in-process. For the registration, Step **9A** applies on 32-bit Windows, and Step **9B** on 64-bit Windows (such as Windows 11).
 
 - **VB.NET (modern Visual Basic, e.g., VB2019/VB2022)** can be built as **32-bit or 64-bit**:
   - If your app is **32-bit (x86)**, it can load the XpressNet DLL directly (in-process).

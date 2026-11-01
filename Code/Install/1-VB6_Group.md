@@ -3,7 +3,7 @@ This manual describes how to use the XpressNet Library source code as part of yo
 
 
 ## Step 1: Go to the GitHub repository ##
-Open your browser and go to the [XpressNet repository on Gihub](https://github.com/aikopras/XpressNet).
+Open your browser and go to the [XpressNet repository on GitHub](https://github.com/aikopras/XpressNet).
 <br/><img src="Download/02-Goto_GitHub.png" alt="go to GitHub" width="500"/>
 <br/><br/>
 
@@ -22,7 +22,7 @@ After the file is downloaded to your local Downloads directory, you must open th
 <br/><img src="Download/05-Open_VB6_Source.png" alt="Open VB6_Source" width="500"/>
 <br/><br/>
 
-## Stap 5: Copy all files ##
+## Step 5: Copy all files ##
 After the ZIP file is opened, a new window opens showing all files contained within VB6_Source.zip. Select all files, and copy them to the folder you want to use for your own VB6 application.
 <br/><img src="Download/06-Copy_Files.png" alt="Kopieer files" width="600"/>
 <br/><br/>
@@ -39,7 +39,7 @@ To use the XpressNet sources in your own application program, you have to open a
 <br/><br/>
 
 ## Step 7: Open the XpressNet project and copy the code ##
-Open the file named **XpressNet.vbp**, which is the Visual Basic 6 project group that holds together the various XpressNet source files.
+Open the file named **XpressNet.vbp**, which is the Visual Basic 6 project that holds together the various XpressNet source files.
 <br/><img src="VB6_Group/02-Open_Vbp.png" alt="Open XpressNet.vbp" width="300"/>
 <br/><br/>
 

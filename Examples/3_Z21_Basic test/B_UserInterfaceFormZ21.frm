@@ -576,6 +576,11 @@ Begin VB.Form FormZ21
          Width           =   1600
       End
    End
+   Begin VB.Timer TimerMessageCounter
+      Interval        =   1000
+      Left            =   10200
+      Top             =   1800
+   End
    Begin VB.Frame FrameNumberOfmessages 
       Height          =   615
       Left            =   7920
@@ -973,10 +978,21 @@ Private FS(10) As Byte                 ' Function Status (tastend oder nicht tas
 
 Public Sub Form_Load()
   Set XpressNet = New XpressNetClass   ' We only use the XpressNet part of Z21
+  ' 2026-10 modified: possible lok decoder steps (as in the XpressNet Basic test). Before, the list was empty
+  ComboLokSteps.AddItem "14"
+  ComboLokSteps.AddItem "27"
+  ComboLokSteps.AddItem "28"
+  ComboLokSteps.AddItem "128"
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
   Set XpressNet = Nothing
+End Sub
+
+' 2026-10 modified: new (with the new Timer control TimerMessageCounter), as in the Extended test.
+' Before, txtNmbPckts ("Number of Z21Messages") was never updated
+Private Sub TimerMessageCounter_Timer()
+  txtNmbPckts = XpressNet.NumberOfExpressNetMessagesReceived + XpressNet.NumberOfExpressNetMessagesTransmitted
 End Sub
 
 

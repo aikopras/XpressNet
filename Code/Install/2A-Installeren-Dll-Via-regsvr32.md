@@ -7,7 +7,7 @@ Als eerste wordt de File Explorer geopend, en een nieuwe folder gemaakt met de n
 <br/><br/>
 
 ## Step 2: Ga naar de GitHub repository ##
-Open de browser en ga naar de [XpressNet repository op Gihub](https://github.com/aikopras/XpressNet).
+Open de browser en ga naar de [XpressNet repository op GitHub](https://github.com/aikopras/XpressNet).
 <br/><img src="Download/02-Goto_GitHub.png" alt="Ga naar GitHub" width="500"/>
 <br/><br/>
 
@@ -43,7 +43,7 @@ Ga naar de directory waar de XpressNet.dll is opgeslagen (cd c:\XpressnetDll). D
 <br/><br/>
 
 ## Step 9A: Start regsvr32 op een 32-bit systeem ##
-Start regsvr32, met XpressNet.dll als argument, voor 32 bits applicaties (zie de Appendix onderaan deze pagina).
+Start regsvr32, met XpressNet.dll als argument, op een 32-bit systeem (zie ook de Appendix onderaan deze pagina).
 <br/><img src="Regsvr32/04-Detail_regsvr32.png" alt="Register" width="400"/>
 <br/>
 Als alles goed gaat, verschijnt er een window die zegt dat registratie van XpressNet.dll is gelukt.
@@ -54,7 +54,7 @@ Als je later de DLL weer uit de windows registry wilt verwijderen, omdat er bijv
 <br/><br/>
 
 ## Step 9B: Start regsvr32 op een 64-bit systeem ##
-Start regsvr32, met XpressNet.dll als argument, voor 64 bits applicaties (zie de Appendix onderaan deze pagina). Aangezien de XpressNet DLL een 32-bits COM-component is, moet je op een 64-bits versie van Windows de 32-bits versie van regsvr32 gebruiken, die zich bevindt in C:\Windows\SysWOW64. Het uitvoeren van de 64-bits versie van regsvr32 (in C:\Windows\System32) zal niet werken.
+Start regsvr32, met XpressNet.dll als argument, op een 64-bit systeem (zie ook de Appendix onderaan deze pagina). Aangezien de XpressNet DLL een 32-bits COM-component is, moet je op een 64-bits versie van Windows de 32-bits versie van regsvr32 gebruiken, die zich bevindt in C:\Windows\SysWOW64. Het uitvoeren van de 64-bits versie van regsvr32 (in C:\Windows\System32) zal niet werken.
 <br/><img src="Regsvr32/04-Detail_regsvr32-64bit.png" alt="Register" width="500"/>
 <br/>
 Als alles goed gaat, verschijnt er een window die zegt dat registratie van XpressNet.dll is gelukt.
@@ -76,7 +76,7 @@ Voordat de XpressNet DLL library in je eigen programma gebruikt kan worden, moet
 **Belangrijk:** Het maakt niet uit of je Windows-versie 64-bit is; beslissend is of **je applicatie** als 32-bit of als 64-bit draait.
 
 - **VB6-applicaties** zijn **altijd 32-bit**.  
-  → Stap **9A** is van toepassing: het registreren van de DLL is eenvoudig en de DLL wordt direct in het proces geladen.
+  → De DLL wordt direct in het proces geladen. Voor het registreren geldt stap **9A** op 32-bit Windows, en stap **9B** op 64-bit Windows (zoals Windows 11).
 
 - **VB.NET (moderne Visual Basic, bv. VB2019/VB2022)** kan als **32-bit of 64-bit** worden gebouwd:  
   - Als je applicatie **32-bit (x86)** is, kan de XpressNet-DLL direct geladen worden (in-process).  

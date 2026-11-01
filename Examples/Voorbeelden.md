@@ -4,7 +4,7 @@ In deze directory staan een aantal voorbeeld applicaties die bepaalde elementen 
 Behalve bij de laatste test, gaan alle overige test programma's er van uit dat de XpressNet DLL in de windows registry is geïnstalleerd. Zie de installatie handleiding hoe deze registratie kan plaatsvinden. Vergeet niet een Reference naar de DLL te leggen!
 
 ## 1: Basic test ##
-Moet nog worden toegevoegd.
+Dit test programma toont het basis gebruik van de XpressNet DLL: verbinden via TCP/IP of USB, versie informatie opvragen, wissels schakelen (met automatische deactivering), wissel- en RS-Bus terugmeldingen opvragen, en locomotieven en hun functies (F0 t/m F68) besturen. Daarnaast laat het zien hoe de applicatie de directory voor de logfiles kan instellen.
 
 ## 2: Extended test ##
 Met dit test programma kunnen een groot aantal XpressNet commando's worden getest, en bekeken worden welke responses door de centrale worden verstuurd.
@@ -32,7 +32,7 @@ Daarnaast moet één regel in de source file worden aangepast. Zie onderstaand p
 <br/><img src="5_Regfree_test/A_Screenshot-2.png" alt="Kopieer files" width="700"/>
 <br/>
 
-De subdirectory "Result_files-to_distribute" bevat het gecompileerde programma (.exe file), alsmede de DLL. Deze twee files moeten op de productie machine (in dezelfde directory) worden gezet, waarna de applicatie gestart kan worden (zonder dat de DLL geregistreerd is).
+De subdirectory "Exe" bevat het gecompileerde programma (.exe file), alsmede de DLL. Deze twee files moeten op de productie machine (in dezelfde directory) worden gezet, waarna de applicatie gestart kan worden (zonder dat de DLL geregistreerd is).
 
 ## 6: Project Group ##
 Dit voorbeeld laat zien hoe de applicatie en de XpressNet code samen kunnen genomen in één project groep. Het voordeel van deze aanpak is dat de XpressNet code geïntegreerd wordt binnen de applicatie. Dit kan handig zijn tijdens software ontwikkeling, omdat de DLL op dat moment nog niet geïnstalleerd hoeft te worden.
@@ -41,3 +41,5 @@ Dit voorbeeld laat zien hoe de applicatie en de XpressNet code samen kunnen geno
 ## Visual Studion 2019 - Basic test ##
 Dit voorbeeld laat zien hoe het Basic test programma de DLL gebruikt vanuit Visual Studio 2019.
 Ten opzichte van VB6 zijn er een paar veranderingen nodig, zoals AddHandler, om de events af te handelen.
+
+Let op: het project verwijst naar de type library van een bepaalde versie van de DLL. Na het installeren van een nieuwe versie van de DLL (zoals versie 1.3) moet de referentie naar XpressNet worden verwijderd en opnieuw worden toegevoegd (Project → Add Reference…, COM).

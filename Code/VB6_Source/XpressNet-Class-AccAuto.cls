@@ -25,6 +25,9 @@ Attribute VB_Exposed = True
 '
 ' For the interval between activation and deactivation, as well as for the interval between two
 ' activations, the "AccessoryInterval" variable (declared in the XpressNet class) will be used.
+' 2026-10 modified: after a deactivation there is a pause of AccessoryInterval / 2, before the next accessory
+' is activated (as in the example of the Z21 specification, 5.2.1). Without flow control (Z21), the next
+' activation followed the deactivation immediately.
 '
 ' Like the "message" subroutine, this method implements a FIFO queue to store accessory commands
 ' As soon as an accessory command is received, the accessory address and position is saved in the FIFO.
@@ -62,6 +65,7 @@ Private Type AccessoryDataType
     position As Byte
 End Type
 Private head As Byte                              ' we take elements from the head of the queue
+Private pausing As Boolean                        ' 2026-10 modified: is the timer used for the pause after a deactivation?
 Private tail As Byte                              ' tail points to the position of the most recent element
 Private numberOfFifoMessages As Byte              ' number of messages the queue currently holds
 Private fifo(maxFifoEntries) As AccessoryDataType ' this is the queue
@@ -85,7 +89,9 @@ Public Sub handle(ByVal address As Integer, ByVal position As Byte)
   fifo(tail).address = address                    ' store address and position to the FIFO
   fifo(tail).position = position
   ' If this is the only accessory command in the FIFO, we may send it right now
-  If numberOfFifoMessages = 1 Then
+  ' 2026-10 modified: but not during the pause after a deactivation (the accessory is activated after the pause)
+  'If numberOfFifoMessages = 1 Then
+  If (numberOfFifoMessages = 1) And (Not pausing) Then
     Call Parent.CmdAccessory(address, position, 1)  ' activate the accessory
     deactTimer.Interval = Parent.AccessoryInterval  ' set the deactivation timer's interval
     deactTimer.Enabled = True                       ' start the timer
@@ -93,13 +99,27 @@ Public Sub handle(ByVal address As Integer, ByVal position As Byte)
 End Sub
 
 Private Sub Class_Initialize()
-  Call emptyFifo
+  ' 2026-10 modified: the timer is created first, since emptyFifo stops the timer
+  'Call emptyFifo
+  'Set deactTimer = New XTimerClass                ' Create a new timer object
   Set deactTimer = New XTimerClass                ' Create a new timer object
+  Call emptyFifo
 End Sub
 
 Private Sub deactTimer_Timer(ByVal Seconds As Currency)
   ' STEP 1: If the timer expires, we need to send the accessory command to deactivate the output port
   deactTimer.Enabled = False
+  ' 2026-10 modified: if the pause after a deactivation is over (see STEP 3), activate the port of the next
+  ' accessory (if the FIFO is not empty), and start the timer
+  If pausing Then
+    pausing = False
+    If numberOfFifoMessages > 0 Then
+      Call Parent.CmdAccessory(fifo(head).address, fifo(head).position, 1)
+      deactTimer.Interval = Parent.AccessoryInterval  ' set the deactivation timer's interval
+      deactTimer.Enabled = True                       ' start the timer
+    End If
+    Exit Sub
+  End If
   Call Parent.CmdAccessory(fifo(head).address, fifo(head).position, 0)
   ' STEP 2: After deactivation, we should remove this accesory from the FIFO
   numberOfFifoMessages = numberOfFifoMessages - 1
@@ -108,11 +128,15 @@ Private Sub deactTimer_Timer(ByVal Seconds As Currency)
     head = head Mod maxFifoEntries
   End If
   ' STEP 3: If the FIFO is not empty, Activate the port of the next accessory, and start the timer
-  If numberOfFifoMessages > 0 Then
-    Call Parent.CmdAccessory(fifo(head).address, fifo(head).position, 1)
-    deactTimer.Interval = Parent.AccessoryInterval  ' set the deactivation timer's interval
-    deactTimer.Enabled = True                       ' start the timer
-  End If
+  ' 2026-10 modified: first a pause of AccessoryInterval / 2. The next accessory is activated after the pause
+  'If numberOfFifoMessages > 0 Then
+  '  Call Parent.CmdAccessory(fifo(head).address, fifo(head).position, 1)
+  '  deactTimer.Interval = Parent.AccessoryInterval  ' set the deactivation timer's interval
+  '  deactTimer.Enabled = True                       ' start the timer
+  'End If
+  pausing = True
+  deactTimer.Interval = Parent.AccessoryInterval \ 2 ' set the timer's interval for the pause
+  deactTimer.Enabled = True                         ' start the timer
 End Sub
 
 Public Function size() As Byte
@@ -123,6 +147,10 @@ Public Sub emptyFifo()
   head = 0
   tail = 0
   numberOfFifoMessages = 0
+  ' 2026-10 modified: stop the deactivation timer as well. Before, the timer kept running with an empty FIFO,
+  ' which resulted in an overflow error (numberOfFifoMessages is a Byte) and a deactivation of fifo(0)
+  deactTimer.Enabled = False
+  pausing = False
 End Sub
 
 

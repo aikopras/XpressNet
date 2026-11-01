@@ -72,19 +72,30 @@ Private Sub checkInDataForZ21messages()
   ' We use "Exit Sub" to leave the While loop, whenever the inData buffer contains "garbage")
   While indexNextInByte > 0
     ' Step 1: Determine the length of the Z21 and XpressNet messages
-    Z21length = inData(0)
+    ' 2026-10 modified: DataLen consists of 2 bytes (little endian)
+    'Z21length = inData(0)
+    Z21length = CLng(inData(0)) + (CLng(inData(1)) * 256)
     ' Step 2: Check if we have at least this number of bytes in the indata buffer
     ' If not, we have something inconsistent in the inData buffer
     ' In such case we raise an error, clear the indata buffer and exit the subroutine
-    If Z21length > indexNextInByte Then
+    ' 2026-10 modified: a DataLen below 4 is wrong as well (DataLen 0 resulted in an endless loop)
+    'If Z21length > indexNextInByte Then
+    If (Z21length > indexNextInByte) Or (Z21length < 4) Then
       Parent.Logfile.Errors "Error: Z21 messagesize exceeds the number of received UDP bytes"
       indexNextInByte = 0                    ' clear the inBuffer
       Exit Sub                               ' and return
     End If
    ' STEP 3: Copy the Z21 message in a new buffer
-    For i = 0 To (Z21length - 1)
-      Z21Message(i) = inData(i)
-    Next
+    ' 2026-10 modified: Z21Message can hold 23 bytes. Longer Z21 messages are not copied (that resulted in
+    ' "subscript out of range"). The XpressNet messages are shorter (LAN_X_LOCO_INFO: at most 21 bytes)
+    'For i = 0 To (Z21length - 1)
+    '  Z21Message(i) = inData(i)
+    'Next
+    If Z21length <= (UBound(Z21Message) + 1) Then
+      For i = 0 To (Z21length - 1)
+        Z21Message(i) = inData(i)
+      Next
+    End If
     ' STEP 4: Remove the z21 message from the inData buffer, and shift the remainder to the begin
     i = 0
     For j = Z21length To (indexNextInByte - 1)
@@ -93,7 +104,9 @@ Private Sub checkInDataForZ21messages()
     Next
     indexNextInByte = i                       ' points to the next empty byte
     ' STEP 5: Call the subroutine that analyses the individual Z21 message
-    Call DecodeZ21Message(Z21length, Z21Message)
+    ' 2026-10 modified: only Z21 messages that have been copied (see STEP 3)
+    'Call DecodeZ21Message(Z21length, Z21Message)
+    If Z21length <= (UBound(Z21Message) + 1) Then Call DecodeZ21Message(Z21length, Z21Message)
   Wend
 End Sub
 
@@ -108,26 +121,38 @@ Private Sub DecodeZ21Message(ByVal Z21length As Long, ByRef Z21Message() As Byte
   Dim j As Long                              ' used in For loops
   ' STEP 1: Exit if the Z21Message does not contain an XpressNet message
   If Z21Message(2) <> &H40 Then Exit Sub
+  ' 2026-10 modified: an XpressNet message has at least an X-Header and a XOR byte (DataLen >= 6)
+  If Z21length < 6 Then Exit Sub
   ' STEP2: Retrieve the length of the XpressNet message from the first Z21 byte
-  Xpnlength = inData(0) - 5                  ' Xpnlength is without the XOR byte
-  indexXor = inData(0) - 1                   ' Since the first index is 0, we should subtract 1
+  ' 2026-10 modified: use Z21length (= DataLen of this Z21 message). inData has already been shifted to the
+  ' next Z21 message, so inData(0) was only correct if the UDP packet contained a single Z21 message
+  'Xpnlength = inData(0) - 5                  ' Xpnlength is without the XOR byte
+  'indexXor = inData(0) - 1                   ' Since the first index is 0, we should subtract 1
+  Xpnlength = Z21length - 5                  ' Xpnlength is without the XOR byte
+  indexXor = Z21length - 1                   ' Since the first index is 0, we should subtract 1
   ' STEP 3: Should we log the XpressNet packet?
   If Parent.LogHexMessages Then Parent.Logfile.ReceiveHexRange Z21Message(), 0, indexXor
   ' STEP 4: Check if the XOR value is correct
   xorValue = 0                               ' Initialise
   For i = 4 To indexXor                      ' If we include the XOR byte in the XOR calculation
-    xorValue = xorValue Xor inData(i)        ' the result should become 0
+    ' 2026-10 modified: use Z21Message instead of inData (see STEP 2)
+    'xorValue = xorValue Xor inData(i)        ' the result should become 0
+    xorValue = xorValue Xor Z21Message(i)    ' the result should become 0
   Next
   If xorValue Then                           ' XOR error. Exit sub
     Parent.Logfile.Errors "XOR Error in received XpressNet message"
     If Parent.LogErrors Then Parent.Logfile.ReceiveHexRange Z21Message(), 0, indexXor
+    ' 2026-10 modified: a message with a XOR error is not decoded (the comment above already said: Exit sub)
+    Exit Sub
   End If
   ' NOTE: in the "normal receive routine we check if the received message is a broadcast message
   ' We could do that here as well, but since there is no flow control, knowing if something is a
   ' broadcast message doesn;t bring anything
   ' STEP 5: Copy the XpressNet message into the xpnMessage buffer
    For i = 0 To (indexHeader + Xpnlength)
-     XpnMessage(i) = inData(i + 4)
+     ' 2026-10 modified: use Z21Message instead of inData (see STEP 2)
+     'XpnMessage(i) = inData(i + 4)
+     XpnMessage(i) = Z21Message(i + 4)
    Next
   ' STEP 6: Call the subroutine that analyses the individual XpressNet message
   Call Parent.receive.DecodeXpressNetMessage(Xpnlength, XpnMessage, 0)

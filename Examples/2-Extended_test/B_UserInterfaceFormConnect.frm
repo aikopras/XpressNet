@@ -3242,11 +3242,17 @@ Private Sub XpressNet_FunctionsZustandF13F20(ByVal F13_F20 As Byte, ByVal F21_F2
   Call ShowFbGroup(F21_F28, 5)   ' Led FB bits for Gruppe 5
 End Sub
 Private Sub XpressNet_FunctionsZustandF29F68(ByVal F29_F36 As Byte, ByVal F37_F44 As Byte, ByVal F45_F52 As Byte, ByVal F53_F60 As Byte, ByVal F61_F68 As Byte)
-  FB(4) = F29_F36                ' Store Gruppe 6
-  FB(4) = F37_F44                ' Store Gruppe 7
-  FB(4) = F45_F52                ' Store Gruppe 8
-  FB(4) = F53_F60                ' Store Gruppe 9
-  FB(5) = F61_F68                ' Store Gruppe 10
+  ' 2026-10 modified: the groups 6..10 are stored in FB(6)..FB(10) (were all stored in FB(4) and FB(5))
+  'FB(4) = F29_F36                ' Store Gruppe 6
+  'FB(4) = F37_F44                ' Store Gruppe 7
+  'FB(4) = F45_F52                ' Store Gruppe 8
+  'FB(4) = F53_F60                ' Store Gruppe 9
+  'FB(5) = F61_F68                ' Store Gruppe 10
+  FB(6) = F29_F36                ' Store Gruppe 6
+  FB(7) = F37_F44                ' Store Gruppe 7
+  FB(8) = F45_F52                ' Store Gruppe 8
+  FB(9) = F53_F60                ' Store Gruppe 9
+  FB(10) = F61_F68               ' Store Gruppe 10
   Call ShowFbGroup(F29_F36, 6)   ' Led FB bits for Gruppe 6
   Call ShowFbGroup(F37_F44, 7)   ' Led FB bits for Gruppe 7
   Call ShowFbGroup(F45_F52, 8)   ' Led FB bits for Gruppe 8

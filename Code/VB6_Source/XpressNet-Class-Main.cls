@@ -250,7 +250,11 @@ Public Sub CmdLeseanfrageProgrammieren(ByVal CV As Integer)
     Call send.message(&H23, &H11, (CV \ 256), (CV Mod 256))
     Logfile.Details "LAN_X_CV_READ, CV: " & (CV + 1)
   Else
-    If (ZentraleVersion < "3.6") Then
+    ' 2026-10 modified: numeric comparison of the version with Val(). The implicit conversion of the String
+    ' ZentraleVersion to a number depends on the Windows regional settings (decimal separator), and a
+    ' string comparison does not work for versions >= 10.0
+    'If (ZentraleVersion < "3.6") Then
+    If (Val(ZentraleVersion) < 3.6) Then
       Call send.message(&H22, &H15, (CV Mod 256))
     Else
       Dim daten1 As Byte
@@ -294,7 +298,11 @@ Public Sub CmdSchreibbefehlProgrammieren(ByVal CV As Integer, ByVal Val As Byte)
     Call send.message(&H24, &H12, (CV \ 256), (CV Mod 256), Val)
     Logfile.Details "LAN_X_CV_WRITE, CV: " & (CV + 1) & ", Value: " & Val
   Else
-    If (ZentraleVersion < "3.6") Then
+    ' 2026-10 modified: numeric comparison of the version with Val(). The implicit conversion of the String
+    ' ZentraleVersion to a number depends on the Windows regional settings (decimal separator), and a
+    ' string comparison does not work for versions >= 10.0
+    'If (ZentraleVersion < "3.6") Then
+    If (VBA.Val(ZentraleVersion) < 3.6) Then
       Call send.message(&H23, &H16, (CV Mod 256), Val)
     Else
       Dim daten1 As Byte
@@ -345,7 +353,11 @@ End Sub
 ' The (switch) address gets divided by 4 to obtain the decoder address
 Public Sub CmdSwitchInfoRequest(ByVal address As Integer)
   ' STEP 1: Check the address size against the ZentraleVersion and Protocol.
-  If (ZentraleVersion < "3.8") And (Not Z21Protocol) Then
+  ' 2026-10 modified: numeric comparison of the version with Val(). The implicit conversion of the String
+  ' ZentraleVersion to a number depends on the Windows regional settings (decimal separator), and a
+  ' string comparison does not work for versions >= 10.0
+  'If (ZentraleVersion < "3.8") And (Not Z21Protocol) Then
+  If (Val(ZentraleVersion) < 3.8) And (Not Z21Protocol) Then
     If VelueOutOfRange(address, 1, 1024, "Accessory: Address") Then Exit Sub
   End If
   If VelueOutOfRange(address, 1, 2048, "Accessory: Address") Then Exit Sub
@@ -366,7 +378,9 @@ Public Sub CmdSwitchInfoRequest(ByVal address As Integer)
     Call send.message(&H43, AccAH(wireAddress), AccAL(wireAddress))
   Else
     ' We should set the highest bit of the byte that contains the nibble
-    If (ZentraleVersion < "3.8") Then
+    ' 2026-10 modified: numeric comparison of the version with Val() (see above)
+    'If (ZentraleVersion < "3.8") Then
+    If (Val(ZentraleVersion) < 3.8) Then
       Call send.message(&H42, AccAL(wireAddress), Nibble + 128)
     Else                                       ' Lenz V4 spec says Command station >= 3.8 SHOULD use the new form
       Call send.message(&H43, AccAH(wireAddress), AccAL(wireAddress), Nibble + 128)
@@ -394,7 +408,11 @@ End Sub
 Public Sub CmdAccessory(ByVal address As Integer, ByVal position As Byte, ByVal Activate As Byte)
   'Position 0 = straight / 1 = turn
   ' Check the address size against the ZentraleVersion.
-  If ZentraleVersion < 3.8 Then
+  ' 2026-10 modified: numeric comparison of the version with Val(). The implicit conversion of the String
+  ' ZentraleVersion to a number depends on the Windows regional settings (decimal separator), and a
+  ' string comparison does not work for versions >= 10.0
+  'If ZentraleVersion < 3.8 Then
+  If Val(ZentraleVersion) < 3.8 Then
     If VelueOutOfRange(address, 1, 1024, "Accessory: Address") Then Exit Sub
   Else
     If VelueOutOfRange(address, 1, 2048, "Accessory: Address") Then Exit Sub
@@ -410,7 +428,9 @@ Public Sub CmdAccessory(ByVal address As Integer, ByVal position As Byte, ByVal 
   ' Send the command that fits for this ZentraleVersion and Kennung.
   ' The IF clause is used for the LZV 200 and the Z21
   ' The Else clause is used for LZV100
-  If (ZentraleVersion > "3.6") Or Z21Protocol Then
+  ' 2026-10 modified: numeric comparison of the version with Val() (see above)
+  'If (ZentraleVersion > "3.6") Or Z21Protocol Then
+  If (Val(ZentraleVersion) > 3.6) Or Z21Protocol Then
     Call send.message(&H53, AccAH(address), AccAL(address), daten)
   Else
     Call send.message(&H52, AccAL(address), daten)
@@ -542,7 +562,10 @@ Public Sub CmdPomWrite(ByVal address As Integer, ByVal CV As Integer, ByVal valu
   If VelueOutOfRange(CV, 1, 1024, "PoM write: CV") Then Exit Sub
   CV = CV - 1
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   cvhigh = CV \ 256 + &HEC    ' 0xEC = PoM Schreiben
   Call send.message(&HE6, &H30, AH(address), AL(address), cvhigh, cvlow, value)
@@ -555,7 +578,10 @@ Public Sub CmdPomRead(ByVal address As Integer, ByVal CV As Integer)
   If VelueOutOfRange(CV, 1, 1024, "PoM Read: CV") Then Exit Sub
   CV = CV - 1
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   cvhigh = CV \ 256 + &HE4        ' 0xE4 = PoM Lesen
   Call send.message(&HE6, &H30, AH(address), AL(address), cvhigh, cvlow, 0)
@@ -569,12 +595,18 @@ Public Sub CmdPomBitWrite(ByVal address As Integer, ByVal CV As Integer, ByVal b
   If VelueOutOfRange(bitPosition, 0, 7, "PoM bit write: bit position") Then Exit Sub
   CV = CV - 1
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   If Z21Protocol Then
     cvhigh = CV \ 256 + &HE8               ' 0xE8 = PoM Bit Schreiben (23151 spec says this as well
   Else
-    cvhigh = CV \ 256 + &H7C               ' 0x7C = PoM Bit Schreiben: according to V4 spec
+    ' 2026-10 modified: 0xE8, as in the V3.6 spec (3.2.28.3). The V4 spec (3.43.3) says 0x7C,
+    ' which seems to be an error in the V4 spec
+    'cvhigh = CV \ 256 + &H7C               ' 0x7C = PoM Bit Schreiben: according to V4 spec
+    cvhigh = CV \ 256 + &HE8               ' 0xE8 = PoM Bit Schreiben
   End If
   Dim value As Byte
   value = bitPosition + &HF0               ' highest order bits must all be 1
@@ -700,7 +732,9 @@ Public Sub CmdZ21GetExtAccessory(ByVal address As Integer)
   ' Note: It seems the Z21 specification has an error here: length in the header (4) doesn't match actual length
   ' Either the header should have been &H43, or an extra byte should have been added.
   ' Since we are not able to test this, we decided to add an extra byte. This may be incorrect, however.
-  Call send.message(&H44, (rawAddress \ 256), (rawAddress Mod 256), &H0, &H0)
+  ' 2026-10 modified: as in the Z21 spec (5.5, DataLen 0x09): X-Header 0x44, Adr_MSB, Adr_LSB, 0x00
+  'Call send.message(&H44, (rawAddress \ 256), (rawAddress Mod 256), &H0, &H0)
+  Call send.message(&H44, (rawAddress \ 256), (rawAddress Mod 256), &H0)
   Logfile.Details "Z21: CmdZ21SetExtAccessory. Address: " & address
 End Sub
 
@@ -719,7 +753,10 @@ Public Sub CmdZ21AccPomWrite(ByVal decoderAddress As Integer, ByVal CDDD As Byte
   AAAACDDD = (decoderAddress Mod 16) * 16 + CDDD
   ' CV bytes
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   cvhigh = CV \ 256 + &HEC    ' 0xEC = Acc PoM Schreiben
   Call send.message(&HE6, &H31, aaaaa, AAAACDDD, cvhigh, cvlow, value)
@@ -741,7 +778,10 @@ Public Sub CmdZ21AccPomBitWrite(ByVal decoderAddress As Integer, ByVal CDDD As B
   AAAACDDD = (decoderAddress Mod 16) * 16 + CDDD
   ' CV bytes
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   cvhigh = CV \ 256 + &HE8    ' 0xEC = Acc PoM Bit Schreiben
   ' DB5: 0000VPPP
@@ -767,7 +807,10 @@ Public Sub CmdZ21AccPomRead(ByVal decoderAddress As Integer, ByVal CDDD As Byte,
   AAAACDDD = (decoderAddress Mod 16) * 16 + CDDD
   ' CV bytes
   Dim cvlow As Byte
-  cvlow = CV Mod 255
+  ' 2026-10 modified: the low byte of the CV number is CV Mod 256 (was CV Mod 255: CV 256 became CV 1,
+  ' and CV 257..1024 were one too high)
+  'cvlow = CV Mod 255
+  cvlow = CV Mod 256
   Dim cvhigh As Byte
   cvhigh = CV \ 256 + &HE4    ' 0xE4 = Acc PoM Lesen
   Call send.message(&HE6, &H31, aaaaa, AAAACDDD, cvhigh, cvlow, &H0)
@@ -966,7 +1009,9 @@ Public Sub eventProgInfo(ByVal CvRange As Byte, ByVal daten1 As Byte, ByVal valu
   Select Case CvRange
     Case 1:
       If CV = 0 Then
-        If ZentraleVersion < 3.6 Then
+        ' 2026-10 modified: numeric comparison of the version with Val() (see CmdLeseanfrageProgrammieren)
+        'If ZentraleVersion < 3.6 Then
+        If Val(ZentraleVersion) < 3.6 Then
           CV = 256
         Else
           CV = 1024
@@ -1068,7 +1113,10 @@ Public Sub eventNormaleLokinfo(ByVal Kennung As Byte, ByVal Speed As Byte, ByVal
     Case 4: Fahrstufen = 128
   End Select
   Forwarts = bitValue(Speed, 7)
-  Geschwindigkeit = DecodeSpeed(Speed)
+  ' 2026-10 modified: the speed byte is decoded according to the speed steps (DecodeSpeed is only
+  ' correct for 27/28 speed steps)
+  'Geschwindigkeit = DecodeSpeed(Speed)
+  Geschwindigkeit = DecodeSpeedSteps(Speed, Fahrstufen)
   F5_F8 = F5_F12 Mod 16      ' Gruppe 2 - take the lowest 4 bits
   F9_F12 = F5_F12 \ 16       ' Gruppe 3 - take the highest 4 bits
   RaiseEvent NormaleLokinfo(Besetzt, Fahrstufen, Geschwindigkeit, Forwarts, F0_F4, F5_F8, F9_F12)
@@ -1095,7 +1143,10 @@ Public Sub eventZ21Lokinfo(ByVal Adr_MSB As Byte, ByVal Adr_LSB As Byte, ByVal K
     Case 4: Fahrstufen = 128
   End Select
   Forwarts = bitValue(Speed, 7)
-  Geschwindigkeit = DecodeSpeed(Speed)
+  ' 2026-10 modified: the speed byte is decoded according to the speed steps (DecodeSpeed is only
+  ' correct for 27/28 speed steps)
+  'Geschwindigkeit = DecodeSpeed(Speed)
+  Geschwindigkeit = DecodeSpeedSteps(Speed, Fahrstufen)
   F5_F8 = F5_F12 Mod 16      ' Gruppe 2 - take the lowest 4 bits
   F9_F12 = F5_F12 \ 16       ' Gruppe 3 - take the highest 4 bits
   RaiseEvent Z21Lokinfo(LokAddress, Besetzt, Fahrstufen, Geschwindigkeit, Forwarts, F0_F4, F5_F8, F9_F12, F13_F20, F21_F28)
@@ -1178,7 +1229,9 @@ End Sub
 ' Z21: 2.15 (Antwort auf LAN_X_GET_FIRMWARE_VERSION)
 Public Sub eventz21FirmwareVersion(ByVal V_MSB As Byte, ByVal V_LSB As Byte)
   Dim Version As String
-  Version = V_MSB & "." & V_LSB
+  ' 2026-10 modified: the version is BCD coded (Z21 spec 2.15: 0x01 0x23 = V1.23). Was shown as decimal values
+  'Version = V_MSB & "." & V_LSB
+  Version = Hex(V_MSB) & "." & Right("0" & Hex(V_LSB), 2)
   RaiseEvent z21FirmwareVersion(Version)
   Logfile.Details "Z21 Firmware - Version = " & Version
   End Sub
@@ -1316,6 +1369,23 @@ Public Function DecodeSpeed(ByVal Speed As Integer) As Integer
     result = (Bit0_3 - 2) * 2 + 1 + Bit4
   End If
   DecodeSpeed = result
+End Function
+
+' 2026-10 modified: new function. Derive from the speed byte an integer value, according to the speed steps
+' 14 and 128 speed steps: 0 = stop, 1 = emergency stop (returned as 0), 2.. = speed step 1..
+' 27 and 28 speed steps: DecodeSpeed
+Private Function DecodeSpeedSteps(ByVal Speed As Integer, ByVal Speedsteps As Integer) As Integer
+  Dim value As Integer
+  Select Case Speedsteps
+    Case 14:
+      value = Speed Mod 16                ' take the lowest 4 bits
+      If value >= 2 Then DecodeSpeedSteps = value - 1 Else DecodeSpeedSteps = 0
+    Case 128:
+      value = Speed Mod 128               ' take the lowest 7 bits
+      If value >= 2 Then DecodeSpeedSteps = value - 1 Else DecodeSpeedSteps = 0
+    Case Else:
+      DecodeSpeedSteps = DecodeSpeed(Speed)
+  End Select
 End Function
 
 
