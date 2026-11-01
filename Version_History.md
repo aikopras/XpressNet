@@ -39,6 +39,12 @@ The DLL project uses "No Compatibility". Version 1.3 therefore has new GUIDs. Ap
 - `6-Project_Group`: the DLL source files are updated to version 1.3 (they were from before August 2025).
 - All executables are compiled again with DLL version 1.3. The project files now contain the reference to the DLL.
 
+### Documentation
+
+- `Examples.md` / `Voorbeelden.md`: description of the Basic test added; the executables of the Regfree test are in the subdirectory `Exe`; note for the VS2019 example about the COM reference.
+- `2A-Install-Dll-Via-regsvr32.md` / `2A-Installeren-Dll-Via-regsvr32.md`: on 64-bit Windows (such as Windows 11) Step 9B applies, also for VB6 applications.
+- `Version_History.md` / `Versiegeschiedenis.md` added.
+
 ## Version 1.2 (August 2025)
 
 - The application program can set the directory for the logfiles (`LogDirectory`). See `1-Basic_test` for an example.

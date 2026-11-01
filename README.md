@@ -15,6 +15,8 @@ Download the various [PDF files in Documentation/Commands](Documentation/Command
 
 [Examples](Examples/Examples.md) can be found under the "Examples" branch of this repository.
 
+The changes per version are described in the [Version history](Version_History.md).
+
 A PDF version of the [User manual](Documentation/HowToUse/XpressNet-DLL_NL.pdf) (currently only available in Dutch) can be found under the Documentation/Howto branch of this repository.
 
 ---
@@ -34,5 +36,7 @@ Ondanks deze focus op wissels, seinen en terugmelders, zijn de meeste XpressNet 
 Om precies te weten welke commando's geïmplementeerd zijn, download de [PDF files in Documentation/Commands](Documentation/Commands) voor details. De eerste kolom bevat de VB6 stub / event / logfile bericht dat bij het specifieke commando behoort; indien deze leeg is, is het betreffende commando niet geïmplementeerd. De kleuren geven de graad van testen aan.
 
 [Voorbeelden](Examples/Voorbeelden.md) staan onder de "Examples" tak van deze repository.
+
+De wijzigingen per versie staan in de [Versiegeschiedenis](Versiegeschiedenis.md).
 
 Een PDF versie van de [Gebruikers handleiding](Documentation/HowToUse/XpressNet-DLL_NL.pdf) kan gedownload worden vanuit de "Documentation/Howto" tak van deze repository.
