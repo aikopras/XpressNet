@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'XpressNet Basic Test' target in the 'XpressNet Basic Test' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

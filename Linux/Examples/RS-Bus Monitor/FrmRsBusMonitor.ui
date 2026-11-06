@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FrmRsBusMonitor</class>
+ <widget class="QWidget" name="FrmRsBusMonitor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1184</width>
+    <height>653</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>RsBusMonitor</string>
+  </property>
+  <widget class="QLabel" name="Line_ShapeTcp_R">
+   <property name="geometry">
+    <rect>
+     <x>224</x>
+     <y>72</y>
+     <width>1</width>
+     <height>89</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeTcp_L">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>72</y>
+     <width>1</width>
+     <height>89</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeTcp_B">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>160</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeTcp_T">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>72</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeAnAus_R">
+   <property name="geometry">
+    <rect>
+     <x>224</x>
+     <y>200</y>
+     <width>1</width>
+     <height>137</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeAnAus_L">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>200</y>
+     <width>1</width>
+     <height>137</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeAnAus_B">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>336</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_ShapeAnAus_T">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>200</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_Shape1_R">
+   <property name="geometry">
+    <rect>
+     <x>224</x>
+     <y>360</y>
+     <width>1</width>
+     <height>89</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_Shape1_L">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>360</y>
+     <width>1</width>
+     <height>89</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_Shape1_B">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>448</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Line_Shape1_T">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>360</y>
+     <width>201</width>
+     <height>1</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(100, 100, 100);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="Led" name="ledNotAus">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>280</y>
+     <width>17</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="round">
+    <bool>true</bool>
+   </property>
+   <property name="fillColor">
+    <color>
+    <red>224</red>
+    <green>224</green>
+    <blue>224</blue>
+   </color>
+   </property>
+  </widget>
+  <widget class="Led" name="ledNotHalt">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>312</y>
+     <width>17</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="round">
+    <bool>true</bool>
+   </property>
+   <property name="fillColor">
+    <color>
+    <red>224</red>
+    <green>224</green>
+    <blue>224</blue>
+   </color>
+   </property>
+  </widget>
+  <widget class="Led" name="ledInterfaceStatus">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>248</y>
+     <width>17</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="round">
+    <bool>true</bool>
+   </property>
+   <property name="fillColor">
+    <color>
+    <red>224</red>
+    <green>224</green>
+    <blue>224</blue>
+   </color>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Label1">
+   <property name="geometry">
+    <rect>
+     <x>512</x>
+     <y>312</y>
+     <width>65</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Label1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Label_Header">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>24</y>
+     <width>193</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>RS-Bus Matrix display</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelIpAddress">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>88</y>
+     <width>84</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>IP Address</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelStatus">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>168</y>
+     <width>201</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelConnected">
+   <property name="geometry">
+    <rect>
+     <x>57</x>
+     <y>250</y>
+     <width>83</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Connected</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelNotAus">
+   <property name="geometry">
+    <rect>
+     <x>57</x>
+     <y>282</y>
+     <width>62</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>NotAus</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelNotHalt">
+   <property name="geometry">
+    <rect>
+     <x>57</x>
+     <y>314</y>
+     <width>63</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>NotHalt</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelRSAddress">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>384</y>
+     <width>73</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>RS</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelSwitchAddress">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>384</y>
+     <width>73</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Switch</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LabelAddressConversion">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>368</y>
+     <width>185</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Address Conversions</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignHCenter|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="picPanel">
+   <property name="geometry">
+    <rect>
+     <x>248</x>
+     <y>16</y>
+     <width>633</width>
+     <height>417</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtIP">
+   <property name="geometry">
+    <rect>
+     <x>112</x>
+     <y>88</y>
+     <width>97</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>192.168.0.200</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cmdTcpConnect">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>120</y>
+     <width>169</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Connect TCP/IP</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CmdAllesAn">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>208</y>
+     <width>75</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Alles An</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="CmdAllesAus">
+   <property name="geometry">
+    <rect>
+     <x>136</x>
+     <y>208</y>
+     <width>75</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Alles Aus</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SchaltInfo">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>480</y>
+     <width>177</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Get RS-Bus data</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="TextRS2Switch">
+   <property name="geometry">
+    <rect>
+     <x>32</x>
+     <y>408</y>
+     <width>73</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="TextSwitch2RS">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>408</y>
+     <width>73</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RS2Switch">
+   <property name="geometry">
+    <rect>
+     <x>112</x>
+     <y>387</y>
+     <width>25</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Switch2RS">
+   <property name="geometry">
+    <rect>
+     <x>112</x>
+     <y>416</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Led</class>
+   <extends>QWidget</extends>
+   <header>Led.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>txtIP</tabstop>
+  <tabstop>cmdTcpConnect</tabstop>
+  <tabstop>CmdAllesAn</tabstop>
+  <tabstop>CmdAllesAus</tabstop>
+  <tabstop>SchaltInfo</tabstop>
+  <tabstop>TextRS2Switch</tabstop>
+  <tabstop>TextSwitch2RS</tabstop>
+  <tabstop>RS2Switch</tabstop>
+  <tabstop>Switch2RS</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

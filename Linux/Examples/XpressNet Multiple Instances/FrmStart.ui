@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FrmStart</class>
+ <widget class="QWidget" name="FrmStart">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>367</width>
+    <height>116</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Start</string>
+  </property>
+  <widget class="QPushButton" name="cmdNewXpressNet">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>16</y>
+     <width>145</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Schakel wissel 1 om</string>
+   </property>
+   <property name="text">
+    <string>Add XpressNet</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cmdNewZ21">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>16</y>
+     <width>145</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Add Z21</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>cmdNewXpressNet</tabstop>
+  <tabstop>cmdNewZ21</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
