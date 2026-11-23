@@ -1,5 +1,14 @@
 # Version history
 
+## Repository structure (November 2026)
+The library itself is unchanged (version 2.0); the repository is reorganised, with equal attention for the library and the examples.
+
+- Two parts: [Library](Library/README.md) (src, compiled, Documentation) and [Examples](Examples/README.md) (src, compiled). Both are divided per code base: macOS, Qt (Linux and Windows; the former directory `Linux`), DotNet and VB6.
+- The README files are available in English, German and Dutch. The version history is only kept in English.
+- New example RS-Bus Decoder Scanner (macOS and Qt): finds the decoders with RS-Bus feedback on up to 5 command stations, and reads their CVs via PoM.
+- Compiled Qt examples for Windows and Linux.
+- Qt examples: build scripts that build all examples and make a zip file per example (`build-windows.bat`, started with a double click, and `build-linux.sh`), and separate descriptions for Windows and Linux (Examples-Windows.md, Examples-Linux.md).
+
 ## Version 2.0 (November 2026)
 
 Up to and including version 1.3 the library was only available as VB6 DLL. From version 2.0 there is also a .NET version, a macOS version and a Linux version (Qt), with the same functionality. The repository is therefore divided into the directories `VB6`, `DotNet`, `macOS` and `Linux`.
@@ -17,7 +26,7 @@ Up to and including version 1.3 the library was only available as VB6 DLL. From 
 - Z21: after `CmdInitUdp` the library sets the broadcast flags (LAN_SET_BROADCASTFLAGS), so that the Z21 sends, among others, Alles An / Alles Aus and the turnout info. New command `CmdZ21SetBroadcastFlags`. At a new connection and when closing, the library logs off (LAN_LOGOFF).
 - New example RS-Bus Monitor, in all four versions: shows the feedback information of all 128 RS-Bus addresses. The VB6 and macOS versions existed already, with their own copy of the library code; they now use the library.
 - The example programs have the same names in all four versions: XpressNet Basic Test, XpressNet Test, Z21 Basic Test, XpressNet Multiple Instances, XpressNet Regfree Test and XpressNet Project Group Test (VB6 only), and RS-Bus Monitor. The directories of the examples have these names as well (1.3: 1-Basic_test, 2-Extended_test, …).
-- Documentation: a [Reference manual](Documentation/Reference/Reference.md) and the [user manual](Documentation/HowToUse/Handleiding.md) in Markdown (Dutch).
+- Documentation: a [Reference manual](Library/Documentation/Reference/Reference.md) and the [user manual](Library/Documentation/HowToUse/Handleiding.md) in Markdown (Dutch).
 
 **Changes**
 - `CmdAccessoryAuto`: if the queue is emptied, the switch that is activated at that moment first gets an OFF command.

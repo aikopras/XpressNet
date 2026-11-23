@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'RS-Bus Decoder Scanner' target in the 'RS-Bus Decoder Scanner' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

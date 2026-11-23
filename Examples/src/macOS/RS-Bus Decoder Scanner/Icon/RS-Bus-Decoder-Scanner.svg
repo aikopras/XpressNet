@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfbfc"/>
+      <stop offset="1" stop-color="#dfe1e5"/>
+    </linearGradient>
+    <linearGradient id="pcb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3aa54f"/>
+      <stop offset="1" stop-color="#23803a"/>
+    </linearGradient>
+    <radialGradient id="lens" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#bcdcf5" stop-opacity="0.25"/>
+    </radialGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Background (macOS icon grid: 824 x 824) -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)" filter="url(#shadow)"/>
+  <!-- RS-Bus -->
+  <rect x="170" y="716" width="684" height="26" rx="13" fill="#1f4e9c"/>
+  <!-- Three decoders, each connected to the bus -->
+  <g id="dec">
+    <rect x="258" y="600" width="16" height="130" fill="#1f4e9c"/>
+    <rect x="186" y="330" width="160" height="290" rx="22" fill="url(#pcb)" stroke="#1b5e2b" stroke-width="8"/>
+    <rect x="221" y="455" width="90" height="110" rx="8" fill="#26292e"/>
+    <circle cx="232" cy="385" r="22" fill="#e53935" stroke="#8e1c1a" stroke-width="5"/>
+    <circle cx="300" cy="385" r="22" fill="#b9f6ca" stroke="#2e7d32" stroke-width="5"/>
+  </g>
+  <use href="#dec" x="246"/>
+  <use href="#dec" x="492"/>
+  <!-- Magnifier -->
+  <line x1="745" y1="505" x2="868" y2="628" stroke="#3b3f46" stroke-width="64" stroke-linecap="round"/>
+  <circle cx="640" cy="400" r="160" fill="url(#lens)" stroke="#3b3f46" stroke-width="40"/>
+  <path d="M 545 330 A 125 125 0 0 1 640 280" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+</svg>
