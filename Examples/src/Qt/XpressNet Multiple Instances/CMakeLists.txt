@@ -19,7 +19,7 @@ if(NOT TARGET XpressNetQt)
   add_subdirectory(../../../../Library/src/Qt/XpressNetQt XpressNetQt)
 endif()
 
-add_executable(MultipleInstanceTest
+add_executable(MultipleInstanceTest WIN32
   main.cpp
   FrmStart.h
   FrmStart.cpp

@@ -18,7 +18,7 @@ if(NOT TARGET XpressNetQt)
   add_subdirectory(../../../../Library/src/Qt/XpressNetQt XpressNetQt)
 endif()
 
-add_executable(ExtendedTest
+add_executable(ExtendedTest WIN32
   main.cpp
   FrmExtendedTest.h
   FrmExtendedTest.cpp

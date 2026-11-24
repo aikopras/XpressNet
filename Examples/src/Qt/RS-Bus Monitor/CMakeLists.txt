@@ -18,7 +18,7 @@ if(NOT TARGET XpressNetQt)
   add_subdirectory(../../../../Library/src/Qt/XpressNetQt XpressNetQt)
 endif()
 
-add_executable(RsBusMonitor
+add_executable(RsBusMonitor WIN32
   main.cpp
   FrmRsBusMonitor.h
   FrmRsBusMonitor.cpp
